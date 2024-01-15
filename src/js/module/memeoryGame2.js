@@ -15,10 +15,10 @@ export default class Game2 {
     #itemsId
     #src
     #settingDiv
-    #levelList
-    #listElement1
-    #listElement2
-    #listElement3
+    #level1
+    #level2
+    #level3
+    #LevelDiv
 
     constructor() {
         this.#gameContainer = document.createElement('div')
@@ -36,22 +36,32 @@ export default class Game2 {
         this.#setttingBtn = document.createElement('button')
         this.#setttingBtn.className = 'settingBtn'
 
-        this.#levelList = document.createElement('ur')
-        this.#levelList.className = 'list'
-        this.#listElement1 = document.createElement('li')
-        this.#listElement1.className('li')
-        this.#levelList.appendChild(this.#listElement1)
-        this.#listElement2 = document.createElement('li')
-        this.#listElement2.className('li')
-        this.#listElement3 = document.createElement('li')
-        this.#listElement3.className('li')
+
+        this.#LevelDiv = document.createElement('div')
+        this.#LevelDiv.className = 'level' 
+        this.#level1 = document.createElement('a')
+        this.#level1.className = 'a'
+        this.#level1.innerText = 'Small'
+        this.#level2 = document.createElement('a')
+        this.#level2.className = 'a'
+        this.#level2.innerText = 'Medum'
+        this.#level3 = document.createElement('a')
+        this.#level3.className = 'a'
+        this.#level3.innerText = 'Large'
+
+        this.#LevelDiv.appendChild(this.#level1)
+        this.#LevelDiv.appendChild(this.#level2)
+        this.#LevelDiv.appendChild(this.#level3)
+
+        
 
         this.#settingDiv = document.createElement('div')
         this.#settingDiv.className = 'settings'
         this.#settingDiv.appendChild(this.#setttingBtn)
+        this.#settingDiv.appendChild(this.#LevelDiv)
         this.#gaimeHeader.appendChild(this.#headertext)
         this.#gaimeHeader.appendChild(this.#settingDiv)
-
+        
         this.#settingImg = document.createElement('img')
         this.#settingImg.src = '../src/img/s.png'
         this.#settingImg.className = 'settingImg'
