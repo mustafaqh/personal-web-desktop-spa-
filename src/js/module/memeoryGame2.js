@@ -1,4 +1,4 @@
-export default class Game2{
+export default class Game2 {
     #gameContainer
     #gaimeHeader
     #headertext
@@ -7,22 +7,28 @@ export default class Game2{
     #cardsContainer
     #gameStatus
     #gameLevelText
-    #try  
+    #try
     #gameInfo
     #restartBtn
     #restartImg
     #items
     #itemsId
     #src
-    constructor(){
+    #settingDiv
+    #levelList
+    #listElement1
+    #listElement2
+    #listElement3
+
+    constructor() {
         this.#gameContainer = document.createElement('div')
         this.#gameContainer.className = 'gameContainer'
 
-        this.#gaimeHeader =  document.createElement('div')
+        this.#gaimeHeader = document.createElement('div')
         this.#gaimeHeader.className = "header"
 
-        this.#gameContainer .appendChild(this.#gaimeHeader)
-        
+        this.#gameContainer.appendChild(this.#gaimeHeader)
+
         this.#headertext = document.createElement('h2')
         this.#headertext.className = 'thHeadertext'
         this.#headertext.innerText = 'Memory Game'
@@ -30,14 +36,27 @@ export default class Game2{
         this.#setttingBtn = document.createElement('button')
         this.#setttingBtn.className = 'settingBtn'
 
-        this.#gaimeHeader.appendChild(this.#headertext) 
-        this.#gaimeHeader.appendChild(this.#setttingBtn) 
- 
+        this.#levelList = document.createElement('ur')
+        this.#levelList.className = 'list'
+        this.#listElement1 = document.createElement('li')
+        this.#listElement1.className('li')
+        this.#levelList.appendChild(this.#listElement1)
+        this.#listElement2 = document.createElement('li')
+        this.#listElement2.className('li')
+        this.#listElement3 = document.createElement('li')
+        this.#listElement3.className('li')
+
+        this.#settingDiv = document.createElement('div')
+        this.#settingDiv.className = 'settings'
+        this.#settingDiv.appendChild(this.#setttingBtn)
+        this.#gaimeHeader.appendChild(this.#headertext)
+        this.#gaimeHeader.appendChild(this.#settingDiv)
+
         this.#settingImg = document.createElement('img')
         this.#settingImg.src = '../src/img/s.png'
         this.#settingImg.className = 'settingImg'
         this.#setttingBtn.appendChild(this.#settingImg)
-        
+
         this.#cardsContainer = document.createElement('div')
         this.#cardsContainer.className = ('cardsContainer')
 
@@ -45,17 +64,17 @@ export default class Game2{
 
         this.#gameStatus = document.createElement('div')
         this.#gameStatus.className = 'gameStatus'
-       
+
 
         this.#gameLevelText = document.createElement('p')
-        this.#gameLevelText.className ="levelText"
+        this.#gameLevelText.className = "levelText"
         this.#gameLevelText.innerText = 'Level : normal'
 
         this.#gameStatus.appendChild(this.#gameLevelText)
 
         this.#try = document.createElement('p')
         this.#try.className = 'try'
-        this.#try.innerText = 'Attempt Counter : 10'
+        this.#try.innerText = 'Attempt Counter : '
         this.#gameStatus.appendChild(this.#try)
 
         this.#gameInfo = document.createElement('div')
@@ -73,75 +92,80 @@ export default class Game2{
         this.#gameInfo.appendChild(this.#gameStatus)
         this.#gameInfo.appendChild(this.#restartBtn)
         this.#gameContainer.appendChild(this.#gameInfo)
-       
-        this.#items = ['chips.png', 'dice.png', 'gamble.png', 'gamble2.png','hat.png']
-        this.item2 =  ['chips.png', 'dice.png', 'gamble.png', 'gamble2.png','hat.png','money.png', 'guitar.png']
-        this.#itemsId = [0,1,2,3,4]
+
+        this.#items = ['chips.png', 'dice.png', 'gamble.png', 'gamble2.png', 'hat.png']
+        this.#itemsId = [0, 1, 2, 3, 4]
         this.#src = '../src/img/'
         this.createGameGrid(2)
-        this. restartButton()
+        this.restartButton()
     }
 
 
-    getGame(){
+    getGame() {
         return this.#gameContainer
     }
 
 
-    createGameGrid(y){
-        var shuffledId = this.#itemsId.sort(() => Math.random() - 0.5)
+    createGameGrid(y) {
+        var t = 0
         var x = 0
-        while(x<y){
+        while (x < y) {
+            var shuffledId = this.#itemsId.sort(() => Math.random() - 0.5)
+            
+           
+            console.log(shuffledId)
+            for (var i = 0; i < this.#items.length; i++) {
+                const itemBox = document.createElement('div')
+                itemBox.className = 'card'
+                const theImg = document.createElement('img')
+                theImg.className = 'gameimgs'
+                theImg.src = `${this.#src}${this.#items[shuffledId[i]]}`
+                console.log(shuffledId[i])
+                theImg.id = `image${this.#itemsId[i]}`
+                itemBox.appendChild(theImg)
+                itemBox.id = shuffledId[i]
+                this.#cardsContainer.appendChild(itemBox)
 
-        for (var i = 0; i < this.#items.length; i++) {
-            const itemBox = document.createElement('div')
-            itemBox.className = 'card'
-            const theImg = document.createElement('img')
-            theImg.className = 'gameimgs'
-            theImg.src = `${this.#src}${this.#items[shuffledId[i]]}`
-            console.log(shuffledId[i])
-            theImg.id = `image${this.#itemsId[i]}`
-            itemBox.appendChild(theImg)
-            itemBox.id = shuffledId[i]
-            this.#cardsContainer.appendChild(itemBox)
 
+                itemBox.addEventListener('click', () => {
+                    itemBox.classList.add('boxOpen')
 
-            itemBox.addEventListener('click',()=> {
-                itemBox.classList.add('boxOpen')
-                
-                setTimeout(()=>{   
-                    var openBox = document.querySelectorAll('.boxOpen')
-                    if (openBox.length > 1) {
-                        if (openBox[0].id == openBox[1].id){
-                            console.log(openBox[0].id)
-                            console.log(openBox[1].id)
-                            openBox[0].classList.add('matchBox')
-                            openBox[1].classList.add('matchBox')
+                    setTimeout(() => {
+                        var openBox = document.querySelectorAll('.boxOpen')
+                        if (openBox.length > 1) {
+                            if (openBox[0].id == openBox[1].id) {
+                                console.log(openBox[0].id)
+                                console.log(openBox[1].id)
+                                openBox[0].classList.add('matchBox')
+                                openBox[1].classList.add('matchBox')
 
-                            openBox[1].classList.remove('boxOpen')
-                            openBox[0].classList.remove('boxOpen')
-                            
-                            var matchBox = document.querySelectorAll('.matchBox')
-                            if(matchBox.length == (this.#items.length)*y){
-                                alert('you win')
-                                console.log('you win')
+                                openBox[1].classList.remove('boxOpen')
+                                openBox[0].classList.remove('boxOpen')
+
+                                var matchBox = document.querySelectorAll('.matchBox')
+                                if (matchBox.length == (this.#items.length) * y) {
+                                    alert('you win')
+                                    console.log('you win')
+                                }
+                                t = t+1
+                            } else {
+                                openBox[0].classList.remove('boxOpen')
+                                openBox[1].classList.remove('boxOpen')
+                                t = t + 1
                             }
-                        
-                        } else {
-                            openBox[0].classList.remove('boxOpen')
-                            openBox[1].classList.remove('boxOpen')
+                            this.#try.innerText = `Attempt Counter : ${t}`
                         }
-                    }
-                },500)
-            })
-        } 
-        x = x+ 1
-    }
-
+                    }, 500)
+                })
+            }
+            x = x + 1
+            
         }
-    restartButton(){
-        this.#restartBtn.addEventListener('click', ()=> {
-            this.#cardsContainer.innerHTML=''
+        
+    }
+    restartButton() {
+        this.#restartBtn.addEventListener('click', () => {
+            this.#cardsContainer.innerHTML = ''
             this.createGameGrid(2)
         })
     }
