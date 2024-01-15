@@ -19,18 +19,36 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
     background: #0d614b;
-    padding: 40px 60px;
+    padding: 5px 5px;
     min-width: fit-content; /* Set minimum width based on content */
     min-height: fit-content;
+    max-width:30em;
 }
 
-h2 {
-   font-size:3em; 
-   color: #fff;
+.header {
+   font-size:2em; 
    text-transform: uppercase;
-   letter-spacing: 0.1em;
+   letter-spacing: 0em;
+}
+
+.gameHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.setting{
+    height: 20px;
+    width: 20px;
+    top: 10px;
+    background-image: url(../img/setting.png);
+}
+
+.settingImg {
+    width: 30px;
+    
 }
 
 .reset {
@@ -45,8 +63,7 @@ h2 {
 }
 
 .reset:focus{
-    color: #fff;
-    background: #267c65;
+    
 }
 
 .game {

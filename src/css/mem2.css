@@ -1,0 +1,128 @@
+.gameContainer {
+    background: linear-gradient(135deg, #153677, #4e085f);
+    padding: 10px;
+    max-width: 20em;
+    max-height: 30em;
+    border-radius: 5%;
+    margin-bottom: 30px; /* Or more if needed */
+    outline: 1px solid red;
+}
+.header {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5%;
+    
+}
+
+.thHeadertext {
+    margin-left: 20px;
+}
+
+.settingBtn {
+    background: none;
+    border: none;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    margin-right: 20px;
+
+}
+
+.settingImg {
+    height: 20px;
+
+}
+
+.cardsContainer{
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.gameimgs{
+    width: 40px;
+    height: 40px;
+}
+
+
+.card {
+    position: relative;
+   width: 50px;
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center; 
+   font-size: 3em;
+   transform: rotateY(360deg);
+   transition: 0.25s;
+}
+
+
+
+.card:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../img/q.png');
+    background-position: center;
+    background-size: cover;
+    background-color: #267c65;
+    transition: 0.25s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+
+.boxOpen:after,
+.matchBox:after {
+    transform: rotateY(180deg);
+}
+.gameStatus {
+    border-radius: 5%;
+}
+
+.levelText {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.try {
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.gameInfo {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5%;
+}
+
+.reset {
+    background: none;
+    border: none;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    margin-right: 20px;
+}
+
+.reset:focus{
+    color: #fff;
+    background: #267c65;
+}
+
+.restartImg {
+    height: 30px;
+}

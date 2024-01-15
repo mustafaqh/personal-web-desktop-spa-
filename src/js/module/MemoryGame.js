@@ -3,13 +3,24 @@ export default class MemoryGame{
         this.gameContainer = document.createElement('div')
         this.gameContainer.classList.add('gameContainer')
         this.header = document.createElement('h2')
+        this.header.className = 'header'
         this.gameBox = document.createElement('div')
         this.gameBox.classList.add('game')
         this.resetButton = document.createElement('button')
         this.resetButton.classList.add('reset')
         this.resetButton.innerText = 'restart'
         this.header.innerText = 'memory game'
-        this.gameContainer.appendChild(this.header)
+        this.setting = document.createElement('div')
+        this.setting.className = 'setting'
+        this.settingImg = document.createElement('img')
+        this.settingImg.src = '../src/img/setting.png'
+        this.settingImg.className = 'settingImg'
+        this.setting.appendChild(this.settingImg)
+        this.gameHeader = document.createElement('div')
+        this.gameHeader.className = 'gameHeader'
+        this.gameHeader.appendChild(this.setting)
+        this.gameHeader.appendChild(this.header)
+        this.gameContainer.appendChild(this.gameHeader)
         this.gameContainer.appendChild(this.gameBox)
         this.gameContainer.appendChild(this.resetButton)
         this.items = []
