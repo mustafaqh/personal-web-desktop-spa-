@@ -10,6 +10,7 @@ export default class webSocket {
             })
 
             this.#ws.addEventListener("message", (e) => {
+                //this to avoid getiing any notification in case of hardbeat
                 if (JSON.parse(e.data).username === 'The Server' ||
 						JSON.parse(e.data).username === 'Server') {
                             return
@@ -49,5 +50,22 @@ export default class webSocket {
             this.#ws.send(JSON.stringify(msg))
             console.log('themeessaagge;',msg)
           }
+    }
+
+    cachMessages(msg){
+        var msgs = JSON.parse(localStorage.getItem('Any'))
+
+        if (!msgs) {
+            msgs = [];
+        }
+
+        msgs.push({ username: msg.username, msg: msg.data , time: new Date().toLocaleTimeString(), channel: msg.channel })
+
+		while (msgs.length > 25) {
+			msgs.shift()
+		}
+
+		localStorage.setItem('Any', JSON.stringify(msgs))
+        console.log('cache is ok ')
     }
 }
