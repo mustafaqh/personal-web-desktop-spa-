@@ -11,6 +11,7 @@ export default class webSocket {
 
             this.#ws.addEventListener("message", (e) => {
                 console.log('new msg')
+                this.notify(e)
 			})
 
             this.#ws.addEventListener('close', () => {

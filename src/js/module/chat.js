@@ -131,9 +131,13 @@ export default class ChattApp {
             if(this.#ligInInput.value == ''){
                 alert('you need to enter a valid user name')
             } else {
+                this.#massage.username = this.#ligInInput.value
+                console.log(this.#massage.username)
                 this.#logIncontainer.classList.add('hidden')
                 this.#chatContainer.classList.remove('hidden')
                 this.#johnHeader.innerText = this.#massage.username
+                this.#chatInput.placeholder = `type here ${this.#massage.username}...`
+                this.#websocket.addListner(this)
             }
             
 
