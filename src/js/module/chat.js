@@ -18,7 +18,7 @@ export default class ChattApp {
     #websocket
 
     constructor() {
-        this.#websocket = new wsComunication()
+       
 
         this.#massage = {
             "type": "message",
@@ -106,5 +106,15 @@ export default class ChattApp {
         this.#clearBtn.className = 'button clear-button'
         this.#clearBtn.textContent = 'clear chat'
         this.#chatContainer.appendChild(this.#clearBtn)
+    }
+
+
+    getChatLogIn(){
+        return this.#logIncontainer
+    }
+
+    getChat(){
+        // document.body.appendChild(this.personSelectore,this.chatContainer)
+        return this.#chatContainer
     }
 }
