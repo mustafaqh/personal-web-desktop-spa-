@@ -19,7 +19,7 @@ export default class Game2 {
     #level2
     #level3
     #LevelDiv
-
+    #size 
     constructor() {
         this.#gameContainer = document.createElement('div')
         this.#gameContainer.className = 'gameContainer'
@@ -38,15 +38,15 @@ export default class Game2 {
 
 
         this.#LevelDiv = document.createElement('div')
-        this.#LevelDiv.className = 'level' 
+        this.#LevelDiv.className = 'level hidden' 
         this.#level1 = document.createElement('a')
-        this.#level1.className = 'aElement'
+        this.#level1.className = 'aElement Small'
         this.#level1.innerText = 'Small'
         this.#level2 = document.createElement('a')
-        this.#level2.className = 'aElement'
+        this.#level2.className = 'aElement Medum'
         this.#level2.innerText = 'Medum'
         this.#level3 = document.createElement('a')
-        this.#level3.className = 'aElement'
+        this.#level3.className = 'aElement Large'
         this.#level3.innerText = 'Large'
 
         this.#LevelDiv.appendChild(this.#level1)
@@ -106,8 +106,10 @@ export default class Game2 {
         this.#items = ['chips.png', 'dice.png', 'gamble.png', 'gamble2.png', 'hat.png']
         this.#itemsId = [0, 1, 2, 3, 4]
         this.#src = '../src/img/'
-        this.createGameGrid(2)
+        this.#size = 2
+        this.createGameGrid(this.#size)
         this.restartButton()
+        this.theMemoryGame()
     }
 
 
@@ -173,10 +175,44 @@ export default class Game2 {
         }
         
     }
+
+    theMemoryGame() {
+        
+        this.#setttingBtn.addEventListener('click', () => {
+            this.#LevelDiv.classList.toggle('hidden')
+            
+            this.#level1.addEventListener('click', () => {
+                this.#cardsContainer.innerHTML = ''
+                this.#gameLevelText.innerText = 'Level : small'
+                this.#size = 2
+                this.createGameGrid(this.#size)
+                this.#LevelDiv.classList.add('hidden')
+            })
+
+            this.#level2.addEventListener('click', () => {
+                this.#cardsContainer.innerHTML = ''
+                this.#gameLevelText.innerText = 'Level : Medium'
+                this.#size = 3
+                this.createGameGrid(this.#size)
+                this.#LevelDiv.classList.add('hidden')
+            })
+
+            this.#level3.addEventListener('click', () => {
+                this.#cardsContainer.innerHTML = ''
+                this.#gameLevelText.innerText = 'Level : Larg'
+                this.#size = 4
+                this.createGameGrid(this.#size)
+                this.#LevelDiv.classList.add('hidden')
+            })
+
+            
+        })
+    }
     restartButton() {
         this.#restartBtn.addEventListener('click', () => {
             this.#cardsContainer.innerHTML = ''
-            this.createGameGrid(2)
+            this.createGameGrid(this.#size)
+            this.#try.innerText = `Attempt Counter : 0`
         })
     }
 
