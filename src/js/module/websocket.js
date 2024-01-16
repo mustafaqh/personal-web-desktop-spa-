@@ -8,6 +8,16 @@ export default class webSocket {
             this.#ws.addEventListener('open', () => {
             console.log('the web socket is opend and connected')
             })
+
+            this.#ws.addEventListener("message", (e) => {
+                console.log('new msg')
+			})
+
+            this.#ws.addEventListener('close', () => {
+                this.#ws = null
+                this.#listners = []
+                console.log('the web socket is closed')
+            })
         }
     }
     
