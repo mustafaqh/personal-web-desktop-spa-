@@ -26,6 +26,7 @@ export default class webSocket {
     }
 
 
+    
     addListner(lsnr){
         this.#listners.push(lsnr)
     }
@@ -34,5 +35,14 @@ export default class webSocket {
         this.#listners.forEach(lsnr => {
 			lsnr.newMessage(msg)
 		})
+    }
+
+    sendMsg(msg){
+        if (!this.#ws || this.#ws === 3) {
+            console.log('The websocket is not connected to a server.')
+          } else {
+            this.#ws.send(JSON.stringify(msg))
+            console.log('themeessaagge;',msg)
+          }
     }
 }
