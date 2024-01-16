@@ -83,7 +83,7 @@ export default class Game2 {
 
         this.#try = document.createElement('p')
         this.#try.className = 'try'
-        this.#try.innerText = 'Attempt Counter : '
+        this.#try.innerText = 'Attempt Counter : 0 '
         this.#gameStatus.appendChild(this.#try)
 
         this.#gameInfo = document.createElement('div')
@@ -184,6 +184,7 @@ export default class Game2 {
             this.#level1.addEventListener('click', () => {
                 this.#cardsContainer.innerHTML = ''
                 this.#gameLevelText.innerText = 'Level : small'
+                this.#try.innerText = `Attempt Counter : 0`
                 this.#size = 2
                 this.createGameGrid(this.#size)
                 this.#LevelDiv.classList.add('hidden')
@@ -192,6 +193,7 @@ export default class Game2 {
             this.#level2.addEventListener('click', () => {
                 this.#cardsContainer.innerHTML = ''
                 this.#gameLevelText.innerText = 'Level : Medium'
+                this.#try.innerText = `Attempt Counter : 0`
                 this.#size = 3
                 this.createGameGrid(this.#size)
                 this.#LevelDiv.classList.add('hidden')
@@ -200,6 +202,7 @@ export default class Game2 {
             this.#level3.addEventListener('click', () => {
                 this.#cardsContainer.innerHTML = ''
                 this.#gameLevelText.innerText = 'Level : Larg'
+                this.#try.innerText = `Attempt Counter : 0`
                 this.#size = 4
                 this.createGameGrid(this.#size)
                 this.#LevelDiv.classList.add('hidden')
