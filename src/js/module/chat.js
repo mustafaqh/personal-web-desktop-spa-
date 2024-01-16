@@ -1,8 +1,8 @@
 import webSocket  from "./websocket.js"
 
 export default class ChattApp {
-    #inputbtn = document.createElement('button')
-    #ligInInput = document.createElement('input')
+    #inputbtn 
+    #logInInput
     #logIncontainer
     #johnHeader
     #chatContainer
@@ -35,13 +35,13 @@ export default class ChattApp {
         this.#logIncontainer.className = 'logIn'
         this.logInText = document.createElement('p')
         this.logInText.innerText = 'log in to start chat'
-        this
+        this.#logInInput = document.createElement('input')
         this.#inputbtn = document.createElement('button')
         this.#inputbtn.className = 'button'
         this.#inputbtn.id = 'logIn'
         this.#inputbtn.textContent = 'log in'
         this.#logIncontainer.appendChild(this.logInText)
-        this.#logIncontainer.appendChild(this.#ligInInput)
+        this.#logIncontainer.appendChild(this.#logInInput)
         this.#logIncontainer.appendChild(this.#inputbtn)
         //////////the selector////////////
         
@@ -128,10 +128,10 @@ export default class ChattApp {
        
         this.#inputbtn.addEventListener('click', () => {
             
-            if(this.#ligInInput.value == ''){
+            if(this.#logInInput.value == ''){
                 alert('you need to enter a valid user name')
             } else {
-                this.#massage.username = this.#ligInInput.value
+                this.#massage.username = this.#logInInput.value
                 console.log(this.#massage.username)
                 this.#logIncontainer.classList.add('hidden')
                 this.#chatContainer.classList.remove('hidden')
