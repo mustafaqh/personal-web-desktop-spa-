@@ -62,7 +62,7 @@ export default class Game2 {
         this.#gaimeHeader.appendChild(this.#settingDiv)
         
         this.#settingImg = document.createElement('img')
-        this.#settingImg.src = '../src/img/s.png'
+        this.#settingImg.src = '../src/img//MemoryGame/s.png'
         this.#settingImg.className = 'settingImg'
         this.#setttingBtn.appendChild(this.#settingImg)
 
@@ -94,7 +94,7 @@ export default class Game2 {
 
         this.#restartImg = document.createElement('img')
         this.#restartImg.className = 'restartImg'
-        this.#restartImg.src = '../src/img/restart.png'
+        this.#restartImg.src = '../src/img//MemoryGame/restart.png'
 
         this.#restartBtn.appendChild(this.#restartImg)
 
@@ -105,7 +105,7 @@ export default class Game2 {
 
         this.#items = ['chips.png', 'dice.png', 'gamble.png', 'gamble2.png', 'hat.png']
         this.#itemsId = [0, 1, 2, 3, 4]
-        this.#src = '../src/img/'
+        this.#src = '../src/img/MemoryGame/'
         this.#size = 2
         this.createGameGrid(this.#size)
         this.restartButton()
