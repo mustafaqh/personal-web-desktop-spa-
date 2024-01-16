@@ -108,6 +108,7 @@ export default class ChattApp {
         this.#clearBtn.textContent = 'clear chat'
         this.#chatContainer.appendChild(this.#clearBtn)
         this.loggingIn()
+        this.sendingMsgs()
     }
 
 
@@ -134,6 +135,30 @@ export default class ChattApp {
             }
             
 
+        })
+    }
+
+    sendingMsgs(){
+        this.#sendButton.addEventListener('click', (e) => {
+            e.preventDefault()
+            const newMsg = document.createElement('div')
+            const msgSender = document.createElement('div')
+            const msgText = document.createElement('div')
+            const msgSenderTime = document.createElement('div')
+            msgText.className = 'msg-text'
+            msgSender.className = 'msg-sender'
+            msgSenderTime.className = 'msg-timestamp'
+
+            msgSenderTime.innerText =  new Date().toLocaleString()
+            msgSender.innerText = 'You'
+            msgText.innerText = this.#chatInput.value
+
+            newMsg.appendChild(msgSender)
+            newMsg.appendChild(msgText)
+            newMsg.appendChild(msgSenderTime)
+            newMsg.className = 'blue-msg msg'
+            this.#chatMsg.appendChild(newMsg)
+           console.log(newMsg)
         })
     }
 
