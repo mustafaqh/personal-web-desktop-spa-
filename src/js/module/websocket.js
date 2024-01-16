@@ -10,6 +10,10 @@ export default class webSocket {
             })
 
             this.#ws.addEventListener("message", (e) => {
+                if (JSON.parse(e.data).username === 'The Server' ||
+						JSON.parse(e.data).username === 'Server') {
+                            return
+                        }
                 console.log('new msg')
                 this.notify(e)
 			})
