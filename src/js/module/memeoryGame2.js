@@ -40,13 +40,13 @@ export default class Game2 {
         this.#LevelDiv = document.createElement('div')
         this.#LevelDiv.className = 'level' 
         this.#level1 = document.createElement('a')
-        this.#level1.className = 'a'
+        this.#level1.className = 'aElement'
         this.#level1.innerText = 'Small'
         this.#level2 = document.createElement('a')
-        this.#level2.className = 'a'
+        this.#level2.className = 'aElement'
         this.#level2.innerText = 'Medum'
         this.#level3 = document.createElement('a')
-        this.#level3.className = 'a'
+        this.#level3.className = 'aElement'
         this.#level3.innerText = 'Large'
 
         this.#LevelDiv.appendChild(this.#level1)
@@ -58,7 +58,6 @@ export default class Game2 {
         this.#settingDiv = document.createElement('div')
         this.#settingDiv.className = 'settings'
         this.#settingDiv.appendChild(this.#setttingBtn)
-        this.#settingDiv.appendChild(this.#LevelDiv)
         this.#gaimeHeader.appendChild(this.#headertext)
         this.#gaimeHeader.appendChild(this.#settingDiv)
         
@@ -78,7 +77,7 @@ export default class Game2 {
 
         this.#gameLevelText = document.createElement('p')
         this.#gameLevelText.className = "levelText"
-        this.#gameLevelText.innerText = 'Level : normal'
+        this.#gameLevelText.innerText = 'Level : small'
 
         this.#gameStatus.appendChild(this.#gameLevelText)
 
@@ -101,6 +100,7 @@ export default class Game2 {
 
         this.#gameInfo.appendChild(this.#gameStatus)
         this.#gameInfo.appendChild(this.#restartBtn)
+        this.#settingDiv.appendChild(this.#LevelDiv)
         this.#gameContainer.appendChild(this.#gameInfo)
 
         this.#items = ['chips.png', 'dice.png', 'gamble.png', 'gamble2.png', 'hat.png']
