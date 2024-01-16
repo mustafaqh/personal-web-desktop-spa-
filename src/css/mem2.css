@@ -16,7 +16,8 @@
     justify-content: space-between;
     border-radius: 5%;
     margin-bottom: 7px;
-    outline: 1px solid #fff;
+    box-shadow: 5px 5px 5px black ;
+   
 }
 
 .thHeadertext {
@@ -31,11 +32,44 @@
     height: 30px;
     width: 30px;
     margin-right: 20px;
-
+    cursor: pointer;
+    position: relative;
+    transition: top 0.3s ease, left 0.3s ease;
 }
+
+.settingBtn:hover{
+    /* background-color: #ccc; Change color */
+    box-shadow: 0 2px #666; /* Add shadow for depth */
+    transform: translateY(2px); /* Nudge the button down */
+}
+
+.aElement {
+    display: block;
+    padding: 5px 7px;
+    background-color: #681a7b;
+    cursor: pointer;
+}
+
+.level {
+    position: absolute;
+    z-index: 10;
+    /* background-color: #681a7b; */
+    outline: #1c0123;
+    border-radius: 20%;
+    min-width: 60px;
+    box-shadow: 5px 5px 5px black;
+    
+}
+
+/* Corrected hover selector */
+.level .aElement:hover {
+    background: #7f5d88;
+}
+
 
 .settingImg {
     height: 20px;
+    
 
 }
 
@@ -51,7 +85,8 @@
     align-items: center; 
     margin-bottom: 7px;
     border-radius: 5%;
-    outline: 1px solid #fff;
+    box-shadow: 5px 5px 5px black ;
+    
 }
 
 .gameimgs{
@@ -73,6 +108,7 @@
    margin-top: 5px;
    margin-bottom: 5px;
    border-radius: 20%;
+   box-shadow: 5px 5px 5px hsla(0, 0%, 5%, 0.801) ;
 }
 
 
@@ -95,8 +131,11 @@
 .matchBox:after {
     transform: rotateY(180deg);
 }
+
+
 .gameStatus {
     border-radius: 5%;
+    
 }
 
 .levelText {
@@ -117,7 +156,9 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 5%;
-   
+   font-size: large;
+   font-weight: bold;
+   box-shadow: 10px 5px 5px black ;
 }
 
 .reset {
@@ -129,6 +170,7 @@
     margin-right: 20px;
     position: relative;
     transition: top 0.3s ease, left 0.3s ease;
+    cursor: pointer;
 }
 
 .reset:active{
