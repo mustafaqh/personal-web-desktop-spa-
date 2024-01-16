@@ -1,0 +1,14 @@
+.hidden{
+    display: none;
+}
+
+
+.logIn{
+    background: #15202b;
+    font-family:'Roboto', sans-serif;
+    border-radius: 0.5em;
+    padding: 0.5em 1.25em;
+    margin: auto;
+    max-width: 37.5em;
+    box-shadow: 0 0 0.5em 0.1em #c3c3c333;
+}

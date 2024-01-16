@@ -27,6 +27,7 @@ export default class ChattApp {
             "channel": "my, not so secret, channel",
             "key": "eDBE76deU7L0H9mEBgxUKVR0VCnq0XBd"
         }
+
         ////////////////log in container///////////////////
         this.#logIncontainer = document.createElement('div')
         this.#logIncontainer.className = 'logIn'
@@ -106,6 +107,7 @@ export default class ChattApp {
         this.#clearBtn.className = 'button clear-button'
         this.#clearBtn.textContent = 'clear chat'
         this.#chatContainer.appendChild(this.#clearBtn)
+        this.loggingIn()
     }
 
 
@@ -117,4 +119,23 @@ export default class ChattApp {
         // document.body.appendChild(this.personSelectore,this.chatContainer)
         return this.#chatContainer
     }
+
+
+    loggingIn(){
+       
+        this.#inputbtn.addEventListener('click', () => {
+            
+            if(this.#ligInInput.value == ''){
+                alert('you need to enter a valid user name')
+            } else {
+                this.#logIncontainer.classList.add('hidden')
+                this.#chatContainer.classList.remove('hidden')
+                this.#johnHeader.innerText = this.#massage.username
+            }
+            
+
+        })
+    }
+
+
 }

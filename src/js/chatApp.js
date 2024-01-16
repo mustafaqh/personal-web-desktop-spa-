@@ -2,6 +2,7 @@ import ChattApp from "./module/chat.js"
 
 
 const chat = new ChattApp()
+const holeContainer = document.createElement('div')
 
-document.appendChild(chat.getChatLogIn)
-document.appendChild(chat.getChat())
+document.body.appendChild(chat.getChatLogIn())
+document.body.appendChild(chat.getChat())
