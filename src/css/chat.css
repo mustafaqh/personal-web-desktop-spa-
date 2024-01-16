@@ -1,6 +1,4 @@
-.hidden{
-    display: none;
-}
+
 
 
 .logIn{
@@ -11,8 +9,12 @@
     border-radius: 0.5em;
     padding: 0.5em 1.25em;
     margin: auto;
-    width:23em;
+    width: 23em;
     box-shadow: 0 0 0.5em 0.1em #c3c3c333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .chatContainer{
@@ -26,8 +28,14 @@
     /* max-width: 37.5em; */
     height: 37.5em;
     box-shadow: 0 0 0.5em 0.1em #c3c3c333;
-   
+    display: block;
+    align-items: center;
+    justify-content: space-between;
 } 
+
+.hidden{
+    display: none;
+}
 
 .chat-header{
     margin-bottom: 1em;
@@ -71,10 +79,7 @@
     word-wrap: break-word; /*break the word whenthe word is to long*/
 }
 
-.msg-timestamp{
-    font-size: 0.75em;
-    text-align: right;
-}
+
 
 .blue-msg {
     background-color: #1c9bef;
@@ -96,6 +101,10 @@
     gap: 0.625em;
 }
 
+.msg-timestamp{
+    font-size: 0.75em;
+    text-align: right;
+}
 
 .chat-input {
     padding: 0.625em;

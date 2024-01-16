@@ -49,23 +49,24 @@ export default class webSocket {
           } else {
             this.#ws.send(JSON.stringify(msg))
             console.log('themeessaagge;',msg)
+            this.cachMessages(msg)
           }
     }
 
     cachMessages(msg){
-        var msgs = JSON.parse(localStorage.getItem('Any'))
+        var msgs = JSON.parse(localStorage.getItem('chatApp'))
 
         if (!msgs) {
             msgs = [];
         }
 
-        msgs.push({ username: msg.username, msg: msg.data , time: new Date().toLocaleTimeString(), channel: msg.channel })
+        msgs.push({ username: msg.username, msg: msg.data , time: new Date().toLocaleString(), channel: msg.channel })
 
 		while (msgs.length > 25) {
 			msgs.shift()
 		}
 
-		localStorage.setItem('Any', JSON.stringify(msgs))
+		localStorage.setItem('chatApp', JSON.stringify(msgs))
         console.log('cache is ok ')
     }
 }
