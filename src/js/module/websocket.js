@@ -21,4 +21,18 @@ export default class webSocket {
         }
     }
     
+    getWs(){
+        return this.#ws
+    }
+
+
+    addListner(lsnr){
+        this.#listners.push(lsnr)
+    }
+
+    notify(msg){
+        this.#listners.forEach(lsnr => {
+			lsnr.newMessage(msg)
+		})
+    }
 }
