@@ -4,13 +4,18 @@
 
 
 .logIn{
-    background: #15202b;
+    background: linear-gradient(135deg, #153677, #4e085f);
     font-family:'Roboto', sans-serif;
+    font-weight: bolder;
+    color: #fff;
     border-radius: 0.5em;
     padding: 0.5em 1.25em;
     margin: auto;
-    max-width: 37.5em;
+    width:23em;
     box-shadow: 0 0 0.5em 0.1em #c3c3c333;
+    display: block;
+    align-items: center;
+    justify-content: center;
 }
 
 .chatContainer{
@@ -20,9 +25,13 @@
     border-radius: 0.5em;
     padding: 0.5em 0.7em;
     margin: auto;
-    max-width: 37.5em;
+    width: 23em;
+    /* max-width: 37.5em; */
     height: 37.5em;
     box-shadow: 0 0 0.5em 0.1em #c3c3c333;
+    display: block;
+    align-items: center;
+    justify-content: space-between;
 } 
 
 .chat-header{
@@ -58,6 +67,18 @@
 .msg-sender{
     font-weight: bold;
     margin-bottom:0.31em;
+}
+
+
+.msg-text{
+    font-size: 1em;
+    margin-bottom: 0.31em;
+    word-wrap: break-word; /*break the word whenthe word is to long*/
+}
+
+.msg-timestamp{
+    font-size: 0.75em;
+    text-align: right;
 }
 
 .blue-msg {
