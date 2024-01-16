@@ -1,3 +1,5 @@
+import webSocket  from "./websocket.js"
+
 export default class ChattApp {
     #inputbtn = document.createElement('button')
     #ligInInput = document.createElement('input')
@@ -18,7 +20,7 @@ export default class ChattApp {
     #websocket
 
     constructor() {
-       
+        this.#websocket = new webSocket()
 
         this.#massage = {
             "type": "message",
@@ -141,25 +143,41 @@ export default class ChattApp {
     sendingMsgs(){
         this.#sendButton.addEventListener('click', (e) => {
             e.preventDefault()
-            const newMsg = document.createElement('div')
-            const msgSender = document.createElement('div')
-            const msgText = document.createElement('div')
-            const msgSenderTime = document.createElement('div')
-            msgText.className = 'msg-text'
-            msgSender.className = 'msg-sender'
-            msgSenderTime.className = 'msg-timestamp'
-
-            msgSenderTime.innerText =  new Date().toLocaleString()
-            msgSender.innerText = 'You'
-            msgText.innerText = this.#chatInput.value
-
-            newMsg.appendChild(msgSender)
-            newMsg.appendChild(msgText)
-            newMsg.appendChild(msgSenderTime)
-            newMsg.className = 'blue-msg msg'
-            this.#chatMsg.appendChild(newMsg)
-           console.log(newMsg)
+            this.#massage.data = this.#chatInput.value
+            console.log(this.#massage.data)
+            this.#chatInput.value =''
+            this.#websocket.sendMsg(this.#massage)
         })
+    }
+
+
+
+    newMessage(msg) {
+        const newMsg = document.createElement('div')
+        const msgSender = document.createElement('div')
+        const msgText = document.createElement('div')
+        const msgSenderTime = document.createElement('div')
+        msgText.className = 'msg-text'
+        msgSender.className = 'msg-sender'
+        msgSenderTime.className = 'msg-timestamp'
+        const msgData = JSON.parse(msg.data)
+        msgText.innerText = msgData.data
+        console.log('theMSG',msg)
+
+        if(msgData.username === this.#massage.username){
+            newMsg.className = 'blue-msg msg'
+            msgSender.innerText = 'you'
+        } else {
+            newMsg.className = 'gray-msg msg'
+            msgSender.innerText = msgData.username
+        }
+        
+        msgSenderTime.innerText = new Date().toLocaleString()
+        newMsg.appendChild(msgSender)
+        newMsg.appendChild(msgText)
+        newMsg.appendChild(msgSenderTime)
+        this.#chatMsg.appendChild(newMsg)
+        this.#chatMsg.scrollTop =  this.#chatMsg.scrollHeight
     }
 
 
