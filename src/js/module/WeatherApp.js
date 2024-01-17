@@ -28,7 +28,7 @@ export default class WeatherApp {
         this.#card = document.createElement('div')
         this.#card.className = 'card'
         this.#buttonImage = document.createElement('img')
-        this.#buttonImage.src = '../src/img//weartherApp/search.png'
+        this.#buttonImage.src = '../src/img//weatherApp/search.png'
 
         this.#button = document.createElement('button')
 
@@ -50,7 +50,7 @@ export default class WeatherApp {
         this.#weather = document.createElement('div')
         this.#weather.className = 'weather hidden'
         this.#weatherIcon = document.createElement('img')
-        this.#weatherIcon.src = '../src/img//weartherApp/rain.png'
+        this.#weatherIcon.src = '../src/img//weatherApp/rain.png'
         this.#weatherIcon.className = 'weatnerIcon'
 
         this.#temp = document.createElement('h1')
@@ -75,7 +75,7 @@ export default class WeatherApp {
         this.#humidityCol.className = 'col'
 
         this.#humidityImg = document.createElement('img')
-        this.#humidityImg.src = '../src/img//weartherApp/humidity.png'
+        this.#humidityImg.src = '../src/img//weatherApp/humidity.png'
 
         this.#humidity = document.createElement('p')
         this.#humidity.className = 'humidity'
@@ -94,7 +94,7 @@ export default class WeatherApp {
 
         this.#windImg = document.createElement('img')
         this.#windImg.src = '../src/img//weatherApp/wind.png'
-
+        
         this.#windCol.appendChild(this.#windImg)
         this.#windCol.className = 'col'
         this.#wind = document.createElement('p')
@@ -114,7 +114,7 @@ export default class WeatherApp {
         this.#card.appendChild(this.#search)
         this.#card.appendChild(this.#errorMsg)
         this.#card.appendChild(this.#weather)
-        this.searchAction()
+        // this.searchAction()
     }
 
     appendCardTo(element) {
