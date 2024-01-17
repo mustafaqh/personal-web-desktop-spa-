@@ -117,4 +117,9 @@ export default class WeatherApp {
         this.searchAction()
     }
 
+    appendCardTo(element) {
+        element.appendChild(this.#card);
+
+    }
+
 }
