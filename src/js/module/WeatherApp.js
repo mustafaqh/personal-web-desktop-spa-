@@ -98,6 +98,7 @@ export default class WeatherApp {
         this.#windCol.appendChild(this.#windImg)
         this.#windCol.className = 'col'
         this.#wind = document.createElement('p')
+        this.#wind.className = 'wind'
         this.#windText = document.createElement('p')
         this.#windText.innerText = 'Wind Speed'
 
@@ -114,7 +115,7 @@ export default class WeatherApp {
         this.#card.appendChild(this.#search)
         this.#card.appendChild(this.#errorMsg)
         this.#card.appendChild(this.#weather)
-        // this.searchAction()
+        this.searchAction()
     }
 
     appendCardTo(element) {
@@ -122,4 +123,57 @@ export default class WeatherApp {
 
     }
 
+    async checkWeather(city) {
+        const apiKey = "767c1140678ccf7a12a0d3cd0e115e6f"
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`)
+        var data = await response.json()
+        console.log('ssssssssssss',response.status)
+
+        if (response.status == 404) {
+            this.#errorMsg.classList.remove('hidden')
+            this.#weather.classList.add('hidden')
+        } else {
+            this.#weather.classList.remove('hidden')
+            this.#errorMsg.classList.add('hidden')
+            this.#city.innerHTML = data.name
+            this.#temp.innerHTML = Math.round(data.main.temp) + '°C'
+            this.#humidity.innerHTML = data.main.humidity + ' km/h'
+            this.#wind.innerHTML = data.wind.speed + '%'
+            this.#weatherStauts.innerHTML = data.weather[0].main
+
+            if (data.weather[0].main == 'Clear') {
+                this.#weatherIcon.src = '../src/img//weatherApp/clear.png'
+            } else if (data.weather[0].main == 'Clouds') {
+                this.#weatherIcon.src = '../src/img//weatherApp/clouds.png'
+            } else if (data.weather[0].main == 'Rain') {
+                this.#weatherIcon.src = '../src/img//weatherApp/rain.png'
+            } else if (data.weather[0].main == 'Drizzle') {
+                this.#weatherIcon.src = '../src/img//weatherApp/drizzle.png'
+            } else if (data.weather[0].main == 'Minst') {
+                this.#weatherIcon.src = '../src/img//weatherApp/minst.png'
+            }
+        }
+
+
+
+    }
+
+    searchAction() {
+        this.#button.addEventListener('click', (e) => {
+            e.preventDefault()
+            this.checkWeather(this.#input.value)
+            this.#input.value = ''
+        })
+
+        this.#input,addEventListener('keydown', (e) => {
+            
+            if (e.key == "Enter"){
+                e.preventDefault()
+                this.checkWeather(this.#input.value)
+                this.#input.value = ''
+            }
+          
+        })
+    }
 }
