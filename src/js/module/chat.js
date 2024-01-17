@@ -4,7 +4,8 @@ export default class ChattApp {
     #inputbtn
     #logInInput
     #logIncontainer
-    #johnHeader
+    #logInText
+    #header
     #chatContainer
     #chatMsg
     #blueMsg
@@ -18,6 +19,15 @@ export default class ChattApp {
     #clearBtn
     #massage
     #websocket
+    #headerDiv
+    #editBtn
+    #editImg
+    #emojiDiv
+    #emojis
+    #editDiv
+    #emojiButton
+    #ediInput
+    #editInputDive
     #userName
     constructor() {
         this.#websocket = new webSocket()
@@ -33,14 +43,14 @@ export default class ChattApp {
         ////////////////log in container///////////////////
         this.#logIncontainer = document.createElement('div')
         this.#logIncontainer.className = 'logIn'
-        this.logInText = document.createElement('p')
-        this.logInText.innerText = '🔑 log in to start chating ...'
+        this.#logInText = document.createElement('p')
+        this.#logInText.innerText = '🔑 log in to start chating ...'
         this.#logInInput = document.createElement('input')
         this.#inputbtn = document.createElement('button')
         this.#inputbtn.className = 'button'
         this.#inputbtn.id = 'logIn'
         this.#inputbtn.textContent = 'log in'
-        this.#logIncontainer.appendChild(this.logInText)
+        this.#logIncontainer.appendChild(this.#logInText)
         this.#logIncontainer.appendChild(this.#logInInput)
         this.#logIncontainer.appendChild(this.#inputbtn)
         //////////the selector////////////
@@ -49,11 +59,35 @@ export default class ChattApp {
         this.#chatContainer = document.createElement('div')
         this.#chatContainer.className = 'chatContainer hidden'
 
+        this.#headerDiv = document.createElement('div')
+        this.#headerDiv.className = 'headerDiv'
+        this.#header = document.createElement('h2')
+        this.#header.innerText = ''
+        this.#header.className = 'chat-header'
+        this.#headerDiv.appendChild(this.#header)
+        this.#chatContainer.appendChild(this.#headerDiv)
 
-        this.#johnHeader = document.createElement('h2')
-        this.#johnHeader.innerText = ''
-        this.#johnHeader.className = 'chat-header'
-        this.#chatContainer.appendChild(this.#johnHeader)
+        this.#editDiv = document.createElement('div')
+        this.#editDiv.className = 'editDiv'
+        this.#editBtn = document.createElement('button')
+        this.#editBtn.className = 'editBtn'
+        this.#editInputDive = document.createElement('div')
+        this.#editInputDive.className = 'hidden'
+        this.#ediInput = document.createElement('input')
+        this.#ediInput.className = 'ediInput'
+        this.#ediInput.placeholder = 'enter you new name'
+
+        this.#editImg = document.createElement('img')
+        this.#editImg.className = 'editImg'
+        this.#editImg.src = '../src/img//chat/edit.png'
+
+        this.#editBtn.appendChild(this.#editImg)
+        this.#editDiv.appendChild(this.#editBtn)
+        this.#editInputDive.appendChild(this.#ediInput)
+        this.#editDiv.appendChild(this.#editInputDive)
+        this.#headerDiv.appendChild(this.#editDiv)
+
+
         ////chat-msg div//////
         this.#chatMsg = document.createElement('div')
         this.#chatMsg.className = 'chat-msg'
@@ -103,16 +137,20 @@ export default class ChattApp {
         this.#sendButton.textContent = 'send'
         this.#inputForm.appendChild(this.#chatInput)
         this.#inputForm.appendChild(this.#sendButton)
-
-        ////clear button////
-        this.#clearBtn = document.createElement('button')
-        this.#clearBtn.className = 'button clear-button'
-        this.#clearBtn.textContent = 'clear chat'
-        this.#chatContainer.appendChild(this.#clearBtn)
+        this.#emojiDiv = document.createElement('div')
+        this.#emojiDiv.className='emojis hidden'
+        
+        this.#emojis = ['😂','😭', '😼','😎','👍','🙏','😀','😊','😇','🙂','🙃','😉','😌','😍','🥰','😘','😗','😙','😚','😋','😛','😝','😜','🤪','🤨','🧐','🤓','😎']
+        this.#emojiButton = document.createElement('button')
+        this.#emojiButton.className = 'emojiButton'
+        this.#inputForm.appendChild(this.#emojiButton)
+        this.#inputForm.appendChild(this.#emojiDiv)
+        this.#emojiButton.textContent = '😀'
+        this.#userName
         this.loggingIn()
         this.sendingMsgs()
-        
-
+        this.editUserName()
+        this.emojiList()
     }
 
 
@@ -128,19 +166,20 @@ export default class ChattApp {
 
     loggingIn() {
 
-        this.#inputbtn.addEventListener('click', () => {
-
+        this.#inputbtn.addEventListener('click', (e) => {
+            e.preventDefault()
             if (this.#logInInput.value == '') {
                 alert('you need to enter a valid user name')
             } else {
-                this.#massage.username = this.#logInInput.value
-                console.log(this.#massage.username)
+                this.#userName =  this.#logInInput.value
+                this.#massage.username = this.#userName
+                console.log('user name :', this.#userName)
                 this.#logIncontainer.classList.add('hidden')
                 this.#chatContainer.classList.remove('hidden')
-                this.#johnHeader.innerText = this.#massage.username
+                this.#header.innerText = ` 👩‍👨‍👦${this.#massage.username}`
                 this.#chatInput.placeholder = `type here ${this.#massage.username}...`
                 this.#websocket.addListner(this)
-                this.getCachedMsgs(this.#logInInput.value)
+                this.getCachedMsgs(this.#userName)
             }
 
 
@@ -150,10 +189,15 @@ export default class ChattApp {
     sendingMsgs() {
         this.#sendButton.addEventListener('click', (e) => {
             e.preventDefault()
-            this.#massage.data = this.#chatInput.value
-            console.log(this.#massage.data)
-            this.#chatInput.value = ''
-            this.#websocket.sendMsg(this.#massage)
+            if (this.#chatInput.value === '' ||this.#chatInput.value == ' ' ){
+                return
+            } else {
+                this.#massage.data = this.#chatInput.value
+                console.log(this.#massage.data)
+                this.#chatInput.value = ''
+                this.#websocket.sendMsg(this.#massage)
+            }
+            
         })
     }
 
@@ -171,7 +215,7 @@ export default class ChattApp {
         msgText.innerText = msgData.data
         console.log('theMSG', msg)
 
-        if (msgData.username === this.#massage.username) {
+        if (msgData.username === this.#userName) {
             newMsg.className = 'blue-msg msg'
             msgSender.innerText = 'you'
         } else {
@@ -211,7 +255,7 @@ export default class ChattApp {
                     msgSender.innerText = 'You'
                 } else {
                     newMsg.className = 'gray-msg msg'
-                    msgSender.innerText =msgs[i].username
+                    msgSender.innerText = msgs[i].username
                 }
 
                 msgSenderTime.innerText = msgs[i].time
@@ -225,4 +269,54 @@ export default class ChattApp {
 
 
     }
+
+    editUserName() {
+        var storedMsgs = JSON.parse(localStorage.getItem('chatApp'))
+        this.#ediInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                if (this.#ediInput.value === '') {
+                    alert("Please enter a username");
+                } else {
+                    this.#header.innerText = ` 👩‍👨‍👦${this.#ediInput.value}`;
+                    this.#editInputDive.classList.toggle('hidden');
+                    this.#chatInput.placeholder = `type here ${this.#ediInput.value}...`
+                    if(storedMsgs){
+                        for (let i = 0; i < storedMsgs.length; i ++) {
+                            if(storedMsgs[i].username = this.#userName) {
+                                storedMsgs[i].username = this.#ediInput.value
+
+                            }
+                            localStorage.setItem('chatApp', JSON.stringify(storedMsgs))
+                        }
+                    }else {
+                        return 
+                    }
+                    this.#ediInput.value = '';
+                }
+            }
+        });
+
+
+        this.#editBtn.addEventListener('click', () => {
+            this.#editInputDive.classList.toggle('hidden');
+        });
+    }
+
+    emojiList(){
+        for(let i=0; i < this.#emojis.length; i++) {
+            const emoji = document.createElement('div')
+            emoji.innerHTML = this.#emojis[i];
+            emoji.className = "emoji";
+            this.#emojiDiv.appendChild(emoji)
+            emoji.addEventListener('click', () => {
+                this.#chatInput.value = this.#chatInput.value + this.#emojis[i]
+            })
+        }
+
+        this.#emojiButton.addEventListener('click' , (e)=> {
+            e.preventDefault()
+            this.#emojiDiv.classList.toggle('hidden')
+        })
+    }
+
 }
