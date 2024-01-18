@@ -1,48 +1,102 @@
 body {
-    background: url('../img/webSiteBackground.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
+  background: url('../img/webSiteBackground.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+
+.bar {
+  background:none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 3em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.taskBar {
+  background: rgba(255, 255, 255, 0.715);
+  height: 100%;
+  min-width: 14em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+  column-gap: 5px;
 }
 
 .memoryGame {
-    background-image: url('/src/img/hmm.png'); /* Add your image path here */
-    background-size: cover; /* Cover the entire area of the button */
-    width: 25px; /* Or the size you want */
-    height: 25px; /* Or the size you want */
-    border: none; /* Optional: removes the border */
-    color: transparent; /* Makes the text transparent */
-  }
-  
-  .chattApp {
-    background-image: url('/src/img/icons8-wechat-100.png'); /* Add your image path here */
-    background-size: cover; /* Cover the entire area of the button */
-    width: 25px; /* Or the size you want */
-    height: 25px; /* Or the size you want */
-    border: none; /* Optional: removes the border */
-    color: transparent; /* Makes the text transparent */
-  }
+  height: 35px;
+  background:none;
+  border: none;
+}
+
+.memoryGameIcon {
+  height: 30px;
+}
+
+.chattApp {
+  height: 35px;
+  background:none;
+  border: none;
+}
+
+.chattAppIcon{
+  height: 34px;
+}
+
+.toDoApp {
+  height: 35px;
+  background:none;
+  border: none;
+}
+
+.ToDoAppIcon {
+  height: 34px;
+}
+
+.weatherApp {
+  height: 35px;
+  background:none;
+  border: none;
+}
+
+.weatherAppIcon {
+  height: 34px;
+}
+
+.vertical-line {
+  background: #4d48483b; /* Creates a vertical line */
+  height: 2.5em; /* Adjust the height as needed */
+  width: 4px; /* Width should be 0 to create a line */
+  border-radius: 15%;
+}
+
+.theOuterGBox {
+  background-color: aliceblue;
+  display: inherit;
+  height: 220px;
+
+}
 
 
 
-  .theOuterGBox {
-    background-color: aliceblue;
-    display: inherit;
-    height: 220px;
-    
-  }
-
-
-
- #windowsContainer {
-  position: relative; /* Child windows will be positioned relative to this container */
+#windowsContainer {
+  position: relative;
+  /* Child windows will be positioned relative to this container */
 }
 
 .window {
   position: absolute;
-  width: 300px; /* Set a fixed width for the windows */
-  height: 200px; /* Set a fixed height for the windows */
+  width: 300px;
+  /* Set a fixed width for the windows */
+  height: 200px;
+  /* Set a fixed height for the windows */
   border: 1px solid #000;
   background: #fff;
   /* Use box-shadow to create depth, similar to the OS window effect */
