@@ -185,41 +185,40 @@ export default class Game2 {
    */
   playWithKeyBoard () {
     document.addEventListener('keydown', (e) => {
+      e.preventDefault()
       const cards = document.querySelectorAll('.card')
+      const numRows = 5
+
       for (let i = 0; i < cards.length; i++) {
         cards[i].setAttribute('tabindex', `${i}`)
       }
+
       const currentFocusedIndex = document.activeElement.tabIndex
-     
       let nextIndex = -1
 
-      if (e.key === 'ArrowRight') {
-        nextIndex = currentFocusedIndex + 1
-        if (nextIndex >= cards.length) {
-          nextIndex = 0
-        }
-      } else if (e.key === 'ArrowLeft') {
-        nextIndex = currentFocusedIndex - 1
-        if (nextIndex < 0) {
-          nextIndex = cards.length - 1
-        }
-      } else if (e.key === 'ArrowDown') {
-        nextIndex = currentFocusedIndex + 5
-        if (nextIndex >= cards.length) {
-          nextIndex = 0
-        }
-      } else if (e.key === 'ArrowUp') {
-        nextIndex = currentFocusedIndex - 5
-        if (nextIndex < 0) {
-          nextIndex = cards.length - 1
-        }
+      switch (e.key) {
+        case 'ArrowRight':
+          nextIndex = (currentFocusedIndex + 1) % cards.length
+          break
+        case 'ArrowLeft':
+          nextIndex = (currentFocusedIndex - 1 + cards.length) % cards.length
+          break
+        case 'ArrowDown':
+          nextIndex = currentFocusedIndex + numRows
+          if (nextIndex >= cards.length) {
+            nextIndex -= cards.length
+          }
+          break
+        case 'ArrowUp':
+          nextIndex = currentFocusedIndex - numRows
+          if (nextIndex < 0) {
+            nextIndex += cards.length
+          }
+          break
       }
 
       if (nextIndex !== -1) {
-        const nextCard = Array.from(cards).find(card => card.tabIndex === nextIndex)
-        if (nextCard) {
-          nextCard.focus()
-        }
+        cards[nextIndex].focus()
       }
 
       if (e.key === 'Enter') {
