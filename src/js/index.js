@@ -15,6 +15,9 @@ const openWindows = []
 const chatBtn = document.querySelector('.chattApp')
 const weatherBtn = document.querySelector('.weatherApp')
 
+/**
+ * add event listner to the memory game button in the task bar.
+ */
 memoBtn.addEventListener('click', () => {
   const theWindow = new Windows()
   const memo = new Game2()
@@ -35,6 +38,9 @@ memoBtn.addEventListener('click', () => {
   theWindow.dragDrop(theBody)
 })
 
+/**
+ * add listner to the to do app button in the task bar.
+ */
 toDoBtn.addEventListener('click', () => {
   const theWindow = new Windows()
   const toDo = new ToDoList()
@@ -57,6 +63,9 @@ toDoBtn.addEventListener('click', () => {
   theWindow.dragDrop(theBody)
 })
 
+/**
+ * add lisnter to the chat button in the task bar.
+ */
 chatBtn.addEventListener('click', () => {
   const theWindow = new Windows()
   const ch = new ChattApp()
@@ -81,6 +90,9 @@ chatBtn.addEventListener('click', () => {
   theWindow.dragDrop(theBody)
 })
 
+/**
+ * add event listner to the weather app button in the task bar.
+ */
 weatherBtn.addEventListener('click', () => {
   const theWindow = new Windows()
   const we = new WeatherApp()
