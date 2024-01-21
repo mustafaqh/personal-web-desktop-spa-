@@ -76,14 +76,14 @@
 
 
 
-.blue-msg {
+.sent-msg {
     background-color: #1c9bef;
     max-width: 20em;
     margin-left: auto;
 
 }
 
-.gray-msg {
+.recived-msg {
     background-color: #4e085f;
     max-width: 20em;
     margin-right: auto;

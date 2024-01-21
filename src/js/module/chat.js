@@ -1,5 +1,7 @@
 import TheWebSocket from './websocket.js'
-
+/**
+ * a class that create the elements of the chat app and ccontains the function that are neededd in the chat app.
+ */
 export default class ChattApp {
   #inputbtn
   #logInInput
@@ -8,15 +10,14 @@ export default class ChattApp {
   #header
   #chatContainer
   #chatMsg
-  #blueMsg
+  #sentMsg
   #msgSender
   #msgSenderTime
-  #gryMsg
+  #recived
   #msgText
   #inputForm
   #chatInput
   #sendButton
-  #clearBtn
   #massage
   #websocket
   #headerDiv
@@ -29,6 +30,10 @@ export default class ChattApp {
   #ediInput
   #editInputDive
   #userName
+
+  /**
+   * chat app constructor.
+   */
   constructor () {
     this.#websocket = new TheWebSocket()
 
@@ -91,31 +96,22 @@ export default class ChattApp {
     this.#chatMsg = document.createElement('div')
     this.#chatMsg.className = 'chat-msg'
     /// blue msg///
-    this.#blueMsg = document.createElement('div')
-    this.#blueMsg.className = 'blue-msg msg'
-    this.#chatMsg.appendChild(this.#blueMsg)
+    this.#sentMsg = document.createElement('div')
+    this.#sentMsg.className = 'sent-msg msg'
+    // this.#chatMsg.appendChild(this.#sentMsg)
 
     this.#msgSender = document.createElement('div')
     this.#msgSender.className = 'msg-sender'
     this.#msgSender.innerText = 'you'
     this.#msgText = document.createElement('div')
     this.#msgText.className = 'msg-text'
-    this.#msgText.innerText = 'hey jane, what is up?'
+    this.#msgText.innerText = ''
     this.#msgSenderTime = document.createElement('div')
-    this.#msgSenderTime.className = 'msg-timestamp'
-    this.#msgSenderTime.innerText = '10:30 AM'
-
-    this.#blueMsg.appendChild(this.#msgSender)
-    this.#blueMsg.appendChild(this.#msgText)
-    this.#blueMsg.appendChild(this.#msgSenderTime)
-    /// gry msg///
-    this.#gryMsg = document.createElement('div')
-    this.#gryMsg.className = 'gray-msg msg'
-    this.#chatMsg.appendChild(this.#gryMsg)
-
-    this.#gryMsg.appendChild(this.#msgSender)
-    this.#gryMsg.appendChild(this.#msgText)
-    this.#gryMsg.appendChild(this.#msgSenderTime)
+    this.#msgSenderTime.className = ''
+    this.#msgSenderTime.innerText = ''
+    /// recived msg///
+    this.#recived = document.createElement('div')
+    this.#recived.className = 'recived-msg msg'
 
     this.#chatContainer.appendChild(this.#chatMsg)
     /// ///form/////
@@ -150,34 +146,59 @@ export default class ChattApp {
     this.emojiList()
   }
 
+  /**
+   *
+   * @returns {Element}  the container of the look in window.
+   */
   getChatLogIn () {
     return this.#logIncontainer
   }
 
+  /**
+   *
+   * @returns {Element} the chat app container.
+   */
   getChat () {
-    // document.body.appendChild(this.personSelectore,this.chatContainer)
     return this.#chatContainer
   }
 
+  /**
+   * adding event listner to the logging in button.
+   */
   loggingIn () {
     this.#inputbtn.addEventListener('click', (e) => {
       e.preventDefault()
-      if (this.#logInInput.value === '') {
-        alert('you need to enter a valid user name')
-      } else {
-        this.#userName = this.#logInInput.value
-        this.#massage.username = this.#userName
-        console.log('user name :', this.#userName)
-        this.#logIncontainer.classList.add('hidden')
-        this.#chatContainer.classList.remove('hidden')
-        this.#header.innerText = ` 👩‍👨‍👦${this.#massage.username}`
-        this.#chatInput.placeholder = `type here ${this.#massage.username}...`
-        this.#websocket.addListner(this)
-        this.getCachedMsgs(this.#userName)
+      this.loggingInAction()
+    })
+
+    this.#logInInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault()
+        this.loggingInAction()
       }
     })
   }
 
+  loggingInAction () {
+    if (this.#logInInput.value === '') {
+      alert('you need to enter a valid user name')
+    } else {
+      this.#userName = this.#logInInput.value
+      this.#massage.username = this.#userName
+      console.log('user name :', this.#userName)
+      this.#logIncontainer.classList.add('hidden')
+      this.#chatContainer.classList.remove('hidden')
+      this.#header.innerText = ` 👩‍👨‍👦${this.#massage.username}`
+      this.#chatInput.placeholder = `type here ${this.#massage.username}...`
+      this.#websocket.addListner(this)
+      this.getCachedMsgs(this.#userName)
+    }
+  }
+
+  /**
+   * the fucntion which is responsable to take the chat input value and add it to message data,
+   *  and then pass the msg to function that is responsable to send it websocket.
+   */
   sendingMsgs () {
     this.#sendButton.addEventListener('click', (e) => {
       e.preventDefault()
@@ -192,6 +213,10 @@ export default class ChattApp {
     })
   }
 
+  /**
+   * A function that takes msg data and shows the message in the chat app.
+   * @param {object} msg - The message object containing the data to be displayed.
+   */
   newMessage (msg) {
     const newMsg = document.createElement('div')
     const msgSender = document.createElement('div')
@@ -205,10 +230,10 @@ export default class ChattApp {
     console.log('theMSG', msg)
 
     if (msgData.username === this.#userName) {
-      newMsg.className = 'blue-msg msg'
+      newMsg.className = 'sent-msg msg'
       msgSender.innerText = 'you'
     } else {
-      newMsg.className = 'gray-msg msg'
+      newMsg.className = 'recived-msg msg'
       msgSender.innerText = msgData.username
     }
 
@@ -220,6 +245,10 @@ export default class ChattApp {
     this.#chatMsg.scrollTop = this.#chatMsg.scrollHeight
   }
 
+  /**
+   * function that bring the msgs from the local stoage,
+   * and show it in the chat
+   */
   getCachedMsgs () {
     let msgs = JSON.parse(localStorage.getItem('chatApp'))
 
@@ -240,10 +269,10 @@ export default class ChattApp {
         msgText.innerText = msgs[i].msg
 
         if (msgs[i].username === this.#massage.username) {
-          newMsg.className = 'blue-msg msg'
+          newMsg.className = 'sent-msg msg'
           msgSender.innerText = 'You'
         } else {
-          newMsg.className = 'gray-msg msg'
+          newMsg.className = 'recived-msg msg'
           msgSender.innerText = msgs[i].username
         }
 
@@ -257,6 +286,9 @@ export default class ChattApp {
     }
   }
 
+  /**
+   * function that provide the ability of changing the user name
+   */
   editUserName () {
     const storedMsgs = JSON.parse(localStorage.getItem('chatApp'))
     this.#ediInput.addEventListener('keydown', (e) => {
@@ -287,6 +319,9 @@ export default class ChattApp {
     })
   }
 
+  /**
+   * fubction to add event listener to the emojis to print them in the chat input
+   */
   emojiList () {
     for (let i = 0; i < this.#emojis.length; i++) {
       const emoji = document.createElement('div')
