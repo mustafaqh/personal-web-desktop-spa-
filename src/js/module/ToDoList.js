@@ -48,10 +48,17 @@ export default class ToDoList {
     this.showSavedData()
   }
 
+  /**
+   *
+   * @returns {Element} Dom element that reprsent the app container.
+   */
   getApp () {
     return this.#toDoApp
   }
 
+  /**
+   * add event listner to the add button and search input.
+   */
   appActions () {
     this.#addBtn.addEventListener('click', () => {
       this.addTask()
@@ -67,6 +74,9 @@ export default class ToDoList {
     this.checkTask()
   }
 
+  /**
+   * function to add new task.
+   */
   addTask () {
     if (this.#searchInput.value === '') {
       alert('WRITE SOMETHING TO ADD')
@@ -84,6 +94,9 @@ export default class ToDoList {
     }
   }
 
+  /**
+   * function to mark the task as cheked.
+   */
   checkTask () {
     this.#theList.addEventListener('click', (ev) => {
       if (ev.target.tagName === 'LI') {
@@ -96,10 +109,16 @@ export default class ToDoList {
     })
   }
 
+  /**
+   * function to save the data on the local storage.
+   */
   saveTheData () {
     localStorage.setItem('toDoList', this.#theList.innerHTML)
   }
 
+  /**
+   * function to bring the data from the loca storage.
+   */
   showSavedData () {
     this.#theList.innerHTML = localStorage.getItem('toDoList')
   }
