@@ -1,3 +1,6 @@
+/**
+ * class for the memory game
+ */
 export default class Game2 {
   #gameContainer
   #gaimeHeader
@@ -109,10 +112,18 @@ export default class Game2 {
     this.playWithKeyBoard()
   }
 
+  /**
+   * function return the container of the memory game app.
+   * @returns {object} The DOM element representing the game container.
+   */
   getGame () {
     return this.#gameContainer
   }
 
+  /**
+   * function that creat the grid and add event listner dör each card.
+   * @param {number} y -size of the grid
+   */
   createGameGrid (y) {
     let t = 0
     let x = 0
@@ -169,6 +180,9 @@ export default class Game2 {
     }
   }
 
+  /**
+   * function to give the ability of playing using keyboard.
+   */
   playWithKeyBoard () {
     document.addEventListener('keydown', (e) => {
       const cards = document.querySelectorAll('.card')
@@ -218,6 +232,9 @@ export default class Game2 {
     })
   }
 
+  /**
+   * functon to add a event listner to the setting button and the eements of the setting list(level list)
+   */
   theMemoryGame () {
     this.#setttingBtn.addEventListener('click', () => {
       this.#LevelDiv.classList.toggle('hidden')
@@ -251,6 +268,9 @@ export default class Game2 {
     })
   }
 
+  /**
+   * function to restart the game cover all cards and clear the number of attempts.
+   */
   restartButton () {
     this.#restartBtn.addEventListener('click', () => {
       this.#cardsContainer.innerHTML = ''
