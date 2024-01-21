@@ -29,11 +29,11 @@ export default class Windows {
     this.#closeBtn.className = 'close'
 
     this.#minimizeIcon = document.createElement('img')
-    this.#minimizeIcon.src = '../src/img/mini.png'
+    this.#minimizeIcon.src = '../img/mini.png'
     this.#minimizeIcon.className = 'minimizeIcon'
 
     this.#closeIcon = document.createElement('img')
-    this.#closeIcon.src = '../src/img/close.png'
+    this.#closeIcon.src = '../img/close.png'
     this.#closeIcon.className = 'closeIcon'
     this.#closeBtn.appendChild(this.#closeIcon)
     this.#minimizBtn.appendChild(this.#minimizeIcon)

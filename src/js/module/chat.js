@@ -84,7 +84,7 @@ export default class ChattApp {
 
     this.#editImg = document.createElement('img')
     this.#editImg.className = 'editImg'
-    this.#editImg.src = '../src/img//chat/edit.png'
+    this.#editImg.src = '../img/chat/edit.png'
 
     this.#editBtn.appendChild(this.#editImg)
     this.#editDiv.appendChild(this.#editBtn)
@@ -171,7 +171,7 @@ export default class ChattApp {
       this.loggingInAction()
     })
 
-    this.#logInInput.addEventListener('keydown', (e) => {
+    this.#logInInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault()
         this.loggingInAction()

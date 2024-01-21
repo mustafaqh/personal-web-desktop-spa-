@@ -19,7 +19,7 @@ export default class ToDoList {
     this.#appHeader = document.createElement('h2')
     this.#appHeader.innerText = 'To-Do List'
     this.#headerImg = document.createElement('img')
-    this.#headerImg.src = '../src/img//ToDO/todolist.png'
+    this.#headerImg.src = '../img/ToDO/todolist.png'
     this.#appHeader.appendChild(this.#headerImg)
     this.#toDoApp.appendChild(this.#appHeader)
 

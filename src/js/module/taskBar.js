@@ -31,7 +31,7 @@ export default class TaskBar {
 
     this.#memoryGameIcon = document.createElement('img')
     this.#memoryGameIcon.className = 'memoryGameIcon'
-    this.#memoryGameIcon.src = '../src/img/memoryGameIcon.png'
+    this.#memoryGameIcon.src = '../img/memoryGameIcon.png'
     this.#memoryGame.appendChild(this.#memoryGameIcon)
 
     this.#chatApp = document.createElement('button')
@@ -40,7 +40,7 @@ export default class TaskBar {
 
     this.#chattAppIcon = document.createElement('img')
     this.#chattAppIcon.className = 'chattAppIcon'
-    this.#chattAppIcon.src = '../src/img/chatApp.png'
+    this.#chattAppIcon.src = '../img/chatApp.png'
     this.#chatApp.appendChild(this.#chattAppIcon)
 
     this.#toDoList = document.createElement('button')
@@ -49,7 +49,7 @@ export default class TaskBar {
 
     this.#ToDoAppIcon = document.createElement('img')
     this.#ToDoAppIcon.className = 'ToDoAppIcon'
-    this.#ToDoAppIcon.src = '../src/img//toDo/todolist.png'
+    this.#ToDoAppIcon.src = '../img/toDo/todolist.png'
     this.#toDoList.appendChild(this.#ToDoAppIcon)
 
     this.#weatherApp = document.createElement('button')
@@ -58,7 +58,7 @@ export default class TaskBar {
 
     this.#weatherAppIcon = document.createElement('img')
     this.#weatherAppIcon.className = 'weatherAppIcon'
-    this.#weatherAppIcon.src = '../src/img/weatherApp.png'
+    this.#weatherAppIcon.src = '../img/weatherApp.png'
     this.#weatherApp.appendChild(this.#weatherAppIcon)
 
     this.#verticalLine = document.createElement('div')

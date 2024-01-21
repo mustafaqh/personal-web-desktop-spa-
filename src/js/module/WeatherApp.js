@@ -28,7 +28,7 @@ export default class WeatherApp {
     this.#theApp.className = 'theApp'
     this.#buttonImage = document.createElement('img')
     this.#buttonImage.className = 'seachingImg'
-    this.#buttonImage.src = '../src/img//weatherApp/search.png'
+    this.#buttonImage.src = '../img/weatherApp/search.png'
 
     this.#button = document.createElement('button')
     this.#button.className = 'searchingButton'
@@ -51,7 +51,7 @@ export default class WeatherApp {
     this.#weather = document.createElement('div')
     this.#weather.className = 'weather hidden'
     this.#weatherIcon = document.createElement('img')
-    this.#weatherIcon.src = '../src/img//weatherApp/rain.png'
+    this.#weatherIcon.src = '../img/weatherApp/rain.png'
     this.#weatherIcon.className = 'weatnerIcon'
 
     this.#temp = document.createElement('h1')
@@ -75,7 +75,7 @@ export default class WeatherApp {
     this.#humidityCol.className = 'col'
 
     this.#humidityImg = document.createElement('img')
-    this.#humidityImg.src = '../src/img//weatherApp/humidity.png'
+    this.#humidityImg.src = '../img/weatherApp/humidity.png'
     this.#humidityImg.className = 'humidityImg'
     this.#humidity = document.createElement('p')
     this.#humidity.className = 'humidity'
@@ -93,7 +93,7 @@ export default class WeatherApp {
     this.#windCol = document.createElement('div')
 
     this.#windImg = document.createElement('img')
-    this.#windImg.src = '../src/img//weatherApp/wind.png'
+    this.#windImg.src = '../img/weatherApp/wind.png'
     this.#windImg.className = 'windImg'
     this.#windCol.appendChild(this.#windImg)
     this.#windCol.className = 'col'
@@ -150,15 +150,15 @@ export default class WeatherApp {
       this.#weatherStauts.innerHTML = data.weather[0].main
 
       if (data.weather[0].main === 'Clear') {
-        this.#weatherIcon.src = '../src/img//weatherApp/clear.png'
+        this.#weatherIcon.src = '../img/weatherApp/clear.png'
       } else if (data.weather[0].main === 'Clouds') {
-        this.#weatherIcon.src = '../src/img//weatherApp/clouds.png'
+        this.#weatherIcon.src = '../img/weatherApp/clouds.png'
       } else if (data.weather[0].main === 'Rain') {
-        this.#weatherIcon.src = '../src/img//weatherApp/rain.png'
+        this.#weatherIcon.src = '../img/weatherApp/rain.png'
       } else if (data.weather[0].main === 'Drizzle') {
-        this.#weatherIcon.src = '../src/img//weatherApp/drizzle.png'
+        this.#weatherIcon.src = '../img/weatherApp/drizzle.png'
       } else if (data.weather[0].main === 'Minst') {
-        this.#weatherIcon.src = '../src/img//weatherApp/minst.png'
+        this.#weatherIcon.src = '../img/weatherApp/minst.png'
       }
     }
   }

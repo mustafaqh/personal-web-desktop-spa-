@@ -23,7 +23,7 @@ memoBtn.addEventListener('click', () => {
   const memo = new Game2()
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(memo.getGame())
-  taskBar.creatingOpenIcon(theWindow, 'memoryGame openGame', '../src/img/memoryGameIcon.png', 'memoryGameIcon')
+  taskBar.creatingOpenIcon(theWindow, 'memoryGame openGame', '../img/memoryGameIcon.png', 'memoryGameIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
     theWindow.returnWindow().remove()
@@ -46,7 +46,7 @@ toDoBtn.addEventListener('click', () => {
   const toDo = new ToDoList()
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(toDo.getApp())
-  taskBar.creatingOpenIcon(theWindow, 'toDoApp openToDo', '../src/img//toDo/todolist.png', 'ToDoAppIcon')
+  taskBar.creatingOpenIcon(theWindow, 'toDoApp openToDo', '../img/toDo/todolist.png', 'ToDoAppIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
     theWindow.returnWindow().remove()
@@ -73,7 +73,7 @@ chatBtn.addEventListener('click', () => {
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(ch.getChatLogIn())
   theWindow.appendWindowChild(ch.getChat())
-  taskBar.creatingOpenIcon(theWindow, 'chattApp openChat', '../src/img/chatApp.png', 'chattAppIcon')
+  taskBar.creatingOpenIcon(theWindow, 'chattApp openChat', '../img/chatApp.png', 'chattAppIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
     theWindow.returnWindow().remove()
@@ -99,7 +99,7 @@ weatherBtn.addEventListener('click', () => {
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(we.getWeatherAppp())
 
-  taskBar.creatingOpenIcon(theWindow, 'weatherApp openweather', '../src/img/weatherApp.png', 'weatherAppIcon')
+  taskBar.creatingOpenIcon(theWindow, 'weatherApp openweather', '../img/weatherApp.png', 'weatherAppIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
     theWindow.returnWindow().remove()
