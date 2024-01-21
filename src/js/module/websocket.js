@@ -1,4 +1,4 @@
-import ChattApp from './chat'
+import ChattApp from './chat.js'
 
 export default class TheWbSocket {
   #ws = null
