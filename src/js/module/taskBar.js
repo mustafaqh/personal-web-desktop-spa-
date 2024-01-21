@@ -1,6 +1,5 @@
 import Windows from './Windows.js'
 
-import ToDoList from './ToDoList.js'
 export default class TaskBar {
   #bar
   #taskBar
@@ -72,65 +71,23 @@ export default class TaskBar {
     this.#taskBar.appendChild(this.#verticalLine)
     this.#taskBar.appendChild(this.#oppendBar)
     this.#bar.appendChild(this.#taskBar)
-
-    // this.startMemoGame()
   }
 
+  /**
+   * function to add parent to the bar.
+   * @param {Element} element dom elemnt as aparent to the task bar.
+   */
   appendTaskBar (element) {
     element.appendChild(this.#bar)
   }
 
-  // startMemoGame() {
-  //     this.#memoryGame.addEventListener('click', () => {
-  //         const theWindow = new Windows()
-  //         const game = new Game2()
-  //         theWindow.appendWindow(document.body)
-  //         theWindow.windowName = 'Memory game'
-  //         theWindow.appendWindowChild(game.getGame())
-  //         this.creatingOpenIcon(theWindow,'memoryGame openGame','../src/img/memoryGameIcon.png', 'memoryGameIcon')
-
-  //         theWindow.returnCloseButton().addEventListener('click', () => {
-  //             theWindow.returnWindow().remove()
-  //             const icon = document.querySelector('.openGame')
-  //             icon.remove()
-  //         })
-  //     })
-  // }
-
-  starChatApp (innerElemnt, outerElement) {
-    this.#chatApp.addEventListener('click', () => {
-      const theWindow = new Windows()
-      theWindow.droppingWindow(outerElement)
-      theWindow.appendWindow(outerElement)
-      theWindow.appendChild(innerElemnt)
-    })
-  }
-
-  startToDoApp (innerElemnt, outerElement) {
-    this.#toDoList.addEventListener('click', () => {
-      const theWindow = new Windows()
-      const game = new ToDoList()
-      theWindow.appendWindow(document.body)
-      theWindow.windowName = 'To do list'
-      theWindow.appendWindowChild(game.getGame())
-      this.creatingOpenIcon(theWindow, 'memoryGame openGame', '../src/img/memoryGameIcon.png', 'memoryGameIcon')
-
-      theWindow.returnCloseButton().addEventListener('click', () => {
-        theWindow.returnWindow().remove()
-        const icon = document.querySelector('.openGame')
-        icon.remove()
-      })
-    })
-  }
-
-  StartWeatherApp (innerElemnt, outerElement) {
-    this.#toDoList.addEventListener('click', () => {
-      const theWindow = new Windows()
-      theWindow.appendWindow(outerElement)
-      theWindow.appendChild(innerElemnt)
-    })
-  }
-
+  /**
+   * function to create a button to the opend window and add event listner to toogle the hidden class.
+   * @param {Windows} theWindow instance of the windows class wich provide window container.
+   * @param {string} BtnClassName to mach the open button with the orginal button.
+   * @param {string} imgSrc path to the same img of the orginal button.
+   * @param {string} imgClassName to match the img of the new button with orginal button.
+   */
   creatingOpenIcon (theWindow, BtnClassName, imgSrc, imgClassName) {
     const openIcon = document.createElement('button')
     openIcon.className = BtnClassName
