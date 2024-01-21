@@ -190,8 +190,7 @@ export default class Game2 {
         cards[i].setAttribute('tabindex', `${i}`)
       }
       const currentFocusedIndex = document.activeElement.tabIndex
-      console.log('FFF', currentFocusedIndex)
-      console.log('ZZZZZZ', cards.length)
+     
       let nextIndex = -1
 
       if (e.key === 'ArrowRight') {
