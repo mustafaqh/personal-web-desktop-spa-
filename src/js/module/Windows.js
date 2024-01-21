@@ -46,85 +46,54 @@ export default class Windows {
 
     this.#windowsContainer.appendChild(this.#windowBar)
     this.#widowZindex = 1
-    // this.#windowContent = document.createElement('div')
-    // this.#windowContent.className = 'content'
-
-    // this.#windowsContainer.appendChild(this.#windowContent)
-
-    // this.dragDrop()
     this.minimizeWindow()
-    // this.closeWindow()
   }
 
+  /**
+   *
+   * @returns {Element} DOM element that represent the window container.
+   */
   returnWindow () {
     return this.#windowsContainer
   }
 
+  /**
+   *
+   * @param {Element} element represent outer Dom element as parent for the window container.
+   */
   appendWindow (element) {
     element.appendChild(this.#windowsContainer)
   }
 
+  /**
+   *
+   * @param {Element} child represent Dom element as child for the window container.
+   */
   appendWindowChild (child) {
     this.#windowsContainer.appendChild(child)
   }
 
-  windowName (name) {
-    this.#WindowHeader.textContentext = name
-  }
-
+  /**
+   * function to addd event listener to mimization button.
+   */
   minimizeWindow () {
     this.#minimizBtn.addEventListener('click', () => {
       this.#windowsContainer.classList.add('hidden')
     })
   }
 
+  /**
+   *
+   * @returns {Element} Dom element that represent a closing button.
+   */
   returnCloseButton () {
     return this.#closeBtn
   }
 
-  // closeWindow(){
-  //     this.#closeBtn.addEventListener('click', () => {
-  //         this.#windowsContainer.remove()
-  //     })
-  // }
-
-  // dragableWindow() {
-  //     this.#windowsContainer.addEventListener('dragstart', (event) => {
-  //         console.log('DRAG START', event)
-
-  //         const style = window.getComputedStyle(event.target,null)
-  //         const startX = parseInt(style.getPropertyValue('left'), 10) - event.clientX
-  //         const startY = parseInt(style.getPropertyValue('top'),10) -event.clientY
-  //         const start ={
-  //             posX: startX,
-  //             posY: startY
-  //         }
-
-  //         event.dataTransfer.setData('application/json', JSON.stringify(start))
-  //         console.log('start position', start)
-  //     })
-  // }
-
-  // droppingWindow() {
-  //     document.body.addEventListener('dragover', (event) => {
-  //         console.log('DRAG OVER DROP ZONE', event)
-  //         event.preventDefault()
-  //     })
-
-  //     document.body.addEventListener('drop', (event) => {
-  //         console.log('DROPPED ON DROP ZONE', event)
-
-  //         const start = JSON.parse(event.dataTransfer.getData('application/json'))
-  //         const dropX = event.clientX
-  //         const dropY = event.clientY
-  //         console.log('drop position', [dropX,dropY])
-
-  //         this.#windowsContainer.style.left = (dropX + start.posX) + 'px'
-  //         this.#windowsContainer.style.top = (dropY + start.posY) + 'px'
-  //     })
-  // }
-
-  dragDrop (container) {
+  /**
+   * function to drag and drop the window(window container)
+   */
+  dragDrop () {
     this.#windowsContainer.addEventListener('dragstart', (event) => {
       event.dataTransfer.setData('text/plain', event.target.style.cssText)
     })
@@ -135,6 +104,10 @@ export default class Windows {
     })
   }
 
+  /**
+   *
+   * function to get the opend window as the assigment demands
+   */
   oerderTheWindows () {
     let z = 0
     const offset = 10
@@ -168,7 +141,5 @@ export default class Windows {
       w[i].style.zedIndex = z
       x++
     }
-
-    console.log('zz', z)
   }
 }
