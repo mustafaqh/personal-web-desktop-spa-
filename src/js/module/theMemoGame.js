@@ -19,7 +19,7 @@ export default class Game2 {
     #level2
     #level3
     #LevelDiv
-    #size 
+    #size
     constructor() {
         this.#gameContainer = document.createElement('div')
         this.#gameContainer.className = 'gameContainer'
@@ -38,7 +38,7 @@ export default class Game2 {
 
 
         this.#LevelDiv = document.createElement('div')
-        this.#LevelDiv.className = 'level hidden' 
+        this.#LevelDiv.className = 'level hidden'
         this.#level1 = document.createElement('a')
         this.#level1.className = 'aElement Small'
         this.#level1.innerText = 'Small'
@@ -53,14 +53,14 @@ export default class Game2 {
         this.#LevelDiv.appendChild(this.#level2)
         this.#LevelDiv.appendChild(this.#level3)
 
-        
+
 
         this.#settingDiv = document.createElement('div')
         this.#settingDiv.className = 'settings'
         this.#settingDiv.appendChild(this.#setttingBtn)
         this.#gaimeHeader.appendChild(this.#headertext)
         this.#gaimeHeader.appendChild(this.#settingDiv)
-        
+
         this.#settingImg = document.createElement('img')
         this.#settingImg.src = '../src/img//MemoryGame/s.png'
         this.#settingImg.className = 'settingImg'
@@ -110,6 +110,7 @@ export default class Game2 {
         this.createGameGrid(this.#size)
         this.restartButton()
         this.theMemoryGame()
+        this.playWithKeyBoard()
     }
 
 
@@ -123,8 +124,8 @@ export default class Game2 {
         var x = 0
         while (x < y) {
             var shuffledId = this.#itemsId.sort(() => Math.random() - 0.5)
-            
-           
+
+
             console.log(shuffledId)
             for (var i = 0; i < this.#items.length; i++) {
                 const itemBox = document.createElement('div')
@@ -136,6 +137,7 @@ export default class Game2 {
                 theImg.id = `image${this.#itemsId[i]}`
                 itemBox.appendChild(theImg)
                 itemBox.id = shuffledId[i]
+               
                 this.#cardsContainer.appendChild(itemBox)
 
 
@@ -159,7 +161,7 @@ export default class Game2 {
                                     alert('you win')
                                     console.log('you win')
                                 }
-                                t = t+1
+                                t = t + 1
                             } else {
                                 openBox[0].classList.remove('boxOpen')
                                 openBox[1].classList.remove('boxOpen')
@@ -169,18 +171,76 @@ export default class Game2 {
                         }
                     }, 500)
                 })
+
             }
+
+
             x = x + 1
-            
+
         }
-        
+
+
+
+    }
+
+    playWithKeyBoard() {
+
+       
+        document.addEventListener('keydown', (e) => {
+             const cards = document.querySelectorAll('.card')
+            for(let i = 0; i < cards.length; i++) {
+                cards[i].setAttribute('tabindex', `${i}`)
+            }
+            const currentFocusedIndex = document.activeElement.tabIndex;
+            console.log('FFF', currentFocusedIndex)
+            console.log('ZZZZZZ', cards.length)
+            let nextIndex = -1;
+
+            if (e.key === 'ArrowRight' ) {
+                nextIndex = currentFocusedIndex + 1;
+                if (nextIndex >= cards.length) {
+                    nextIndex = 0; 
+                }
+            } else if (e.key === 'ArrowLeft') {
+                nextIndex = currentFocusedIndex - 1;
+                if (nextIndex < 0) {
+                    nextIndex = cards.length - 1; 
+                }
+            } else if ( e.key === 'ArrowDown') {
+                nextIndex = currentFocusedIndex + 5;
+                if (nextIndex >= cards.length) {
+                    nextIndex = 0; 
+                }
+            } else if ( e.key === 'ArrowUp') {
+                nextIndex = currentFocusedIndex - 5;
+                if (nextIndex < 0) {
+                    nextIndex = cards.length - 1; 
+                }
+            }
+
+
+            if (nextIndex !== -1) {
+                const nextCard = Array.from(cards).find(card => card.tabIndex === nextIndex);
+                if (nextCard) {
+                    nextCard.focus();
+                }
+            }
+
+            if (e.key === 'Enter') {
+                const focusedCard = document.activeElement;
+                if (focusedCard && focusedCard.classList.contains('card')) {
+                    focusedCard.click()
+                }
+            }
+        })
+
     }
 
     theMemoryGame() {
-        
+
         this.#setttingBtn.addEventListener('click', () => {
             this.#LevelDiv.classList.toggle('hidden')
-            
+
             this.#level1.addEventListener('click', () => {
                 this.#cardsContainer.innerHTML = ''
                 this.#gameLevelText.innerText = 'Level : small'
@@ -208,7 +268,7 @@ export default class Game2 {
                 this.#LevelDiv.classList.add('hidden')
             })
 
-            
+
         })
     }
     restartButton() {

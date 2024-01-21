@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     font-family: 0;
@@ -7,19 +7,19 @@
 
 body{
     background: #222;
-}
+} */
 
 .hidden{
     display: none;
 }
-.card {
-    width: 90%;
+.theApp {
+    width:90%;
     max-width: 470px;
     background: linear-gradient(135deg, #153677, #4e085f);
     color: #fff;
-    margin: 100px auto 0;
+    margin: 10px auto 0;
     border-radius: 20px;
-    padding: 40px 35px;
+    padding: 20px 20px;
     text-align: center;
 }
 
@@ -30,7 +30,7 @@ body{
     justify-content: space-between;
 }
 
-.search input{
+.searchInput{
     border: 0;
     outline: 0;
     background: #ebfffc;
@@ -43,7 +43,7 @@ body{
     font-size: 18px;
 }
 
-.search button{
+.searchingButton{
     border: 0;
     outline: 0;
     height: 60px;
@@ -53,7 +53,7 @@ body{
     cursor: pointer;
 }
 
-.search button img{
+.seachingImg{
     width: 16px;
 }
 
@@ -62,15 +62,21 @@ body{
     margin-top: 30px;
 }
 
-.wheather h1 {
-    font-size: 80px;
-    font-weight: 500;
+.classStatus{
+    color: #fff;
 }
 
-.wheather h1 {
+.temp {
+    font-size: 50px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.city{
     font-size: 45px;
     font-weight: 400;
     margin-top: -10px;
+    color: #fff;
 }
 
 .details{
@@ -85,16 +91,17 @@ body{
     display: flex;
     align-items: center;
     text-align: left;
+    color: #fff;
 }
 
-.col img{
-    width: 40px;
+.windImg, .humidityImg{
+    width: 50px;
     margin-right: 10px;
 } 
 
 .humidity, .wind{
-    font-size: 28px;
-    margin-top: -6px;
+    font-size: 15px;
+    
 }
 
 .error{

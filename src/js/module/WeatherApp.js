@@ -1,5 +1,5 @@
 export default class WeatherApp {
-    #card
+    #theApp
     #search
     #input
     #button
@@ -25,17 +25,19 @@ export default class WeatherApp {
 
     constructor() {
 
-        this.#card = document.createElement('div')
-        this.#card.className = 'card'
+        this.#theApp = document.createElement('div')
+        this.#theApp.className = 'theApp'
         this.#buttonImage = document.createElement('img')
+        this.#buttonImage.className = 'seachingImg'
         this.#buttonImage.src = '../src/img//weatherApp/search.png'
 
         this.#button = document.createElement('button')
-
+        this.#button.className = 'searchingButton'
         this.#button.appendChild(this.#buttonImage)
 
         this.#input = document.createElement('input')
         this.#input.placeholder = 'Enter City Name'
+        this.#input.className = 'searchInput'
         this.#search = document.createElement('div')
         this.#search.className = 'search'
         this.#search.appendChild(this.#input)
@@ -76,7 +78,7 @@ export default class WeatherApp {
 
         this.#humidityImg = document.createElement('img')
         this.#humidityImg.src = '../src/img//weatherApp/humidity.png'
-
+        this.#humidityImg.className = 'humidityImg'
         this.#humidity = document.createElement('p')
         this.#humidity.className = 'humidity'
 
@@ -94,7 +96,7 @@ export default class WeatherApp {
 
         this.#windImg = document.createElement('img')
         this.#windImg.src = '../src/img//weatherApp/wind.png'
-        
+        this.#windImg.className ='windImg'
         this.#windCol.appendChild(this.#windImg)
         this.#windCol.className = 'col'
         this.#wind = document.createElement('p')
@@ -112,15 +114,14 @@ export default class WeatherApp {
         this.#detail.appendChild(this.#humidityCol)
         this.#detail.appendChild(this.#windCol)
 
-        this.#card.appendChild(this.#search)
-        this.#card.appendChild(this.#errorMsg)
-        this.#card.appendChild(this.#weather)
+        this.#theApp.appendChild(this.#search)
+        this.#theApp.appendChild(this.#errorMsg)
+        this.#theApp.appendChild(this.#weather)
         this.searchAction()
     }
 
-    appendCardTo(element) {
-        element.appendChild(this.#card);
-
+    getWeatherAppp() {
+        return this.#theApp
     }
 
     async checkWeather(city) {
@@ -138,8 +139,8 @@ export default class WeatherApp {
             this.#errorMsg.classList.add('hidden')
             this.#city.innerHTML = data.name
             this.#temp.innerHTML = Math.round(data.main.temp) + '°C'
-            this.#humidity.innerHTML = data.main.humidity + ' km/h'
-            this.#wind.innerHTML = data.wind.speed + '%'
+            this.#humidity.innerHTML = data.main.humidity + '%'
+            this.#wind.innerHTML = data.wind.speed + 'km/h'
             this.#weatherStauts.innerHTML = data.weather[0].main
 
             if (data.weather[0].main == 'Clear') {

@@ -44,11 +44,15 @@ export default class ToDoList {
         this.#theList.id = 'list'
 
         this.#toDoApp.appendChild(this.#theList)
+        this.appActions()
         this.showSavedData()
     }
 
-    appendCardTo(element) {
-        element.appendChild(this.#Appconatainer);
+    getApp() {
+        return this.#toDoApp
+    }
+
+    appActions() {
         this.#addBtn.addEventListener('click', () => {
             this.addTask()
         })
@@ -62,6 +66,8 @@ export default class ToDoList {
         })
         this.checkTask()
     }
+
+
 
     addTask() {
 

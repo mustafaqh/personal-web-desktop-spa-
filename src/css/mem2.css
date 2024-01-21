@@ -4,13 +4,11 @@
 
 .gameContainer {
     background: linear-gradient(135deg, #153677, #4e085f);
-    padding: 10px;
+    /* padding: 10px; */
     max-width: 20em;
     max-height: 30em;
     border-radius: 5%;
-    margin-bottom: 30px; /* Or more if needed */
-    outline: 1px solid #1c0123;
-    
+    margin-bottom: 10px; 
 }
 .header {
     background-color: rgba(255, 255, 255, 0.3);
@@ -155,14 +153,15 @@
 
 .gameInfo {
     background-color: rgba(255, 255, 255, 0.3);
+  
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 5%;
-   font-size: large;
-   font-weight: bold;
-   box-shadow: 10px 5px 5px black ;
+    font-size: large;
+    font-weight: bold;
+    box-shadow: 10px 5px 5px black ;
 }
 
 .reset {
