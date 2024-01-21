@@ -172,7 +172,7 @@ export default class WeatherApp {
       this.checkWeather(this.#input.value)
       this.#input.value = ''
     })
-    this.#input.addEventListener('keydown', (e) => {
+    this.#input.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault()
         this.checkWeather(this.#input.value)
