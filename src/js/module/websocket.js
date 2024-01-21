@@ -1,7 +1,11 @@
+import ChattApp from './chat'
+
 export default class TheWbSocket {
   #ws = null
   #listners = []
-
+  /**
+   * constructor that create a wbsocket and add event listner.
+   */
   constructor () {
     if (this.#ws === null) {
       this.#ws = new WebSocket('wss://courselab.lnu.se/message-app/socket')
@@ -27,20 +31,37 @@ export default class TheWbSocket {
     }
   }
 
+  /**
+   *
+   * @returns {WebSocket}the web socket
+   */
   getWs () {
     return this.#ws
   }
+
+  /**
+   *
+   * @param {ChattApp} lsnr is the instance of chat class
+   */
 
   addListner (lsnr) {
     this.#listners.push(lsnr)
   }
 
+  /**
+   *
+   * @param {object} msg msg object
+   */
   notify (msg) {
     this.#listners.forEach(lsnr => {
       lsnr.newMessage(msg)
     })
   }
 
+  /**
+   *
+   * @param {object} msg msg object that contain data
+   */
   sendMsg (msg) {
     if (!this.#ws || this.#ws === 3) {
       console.log('The websocket is not connected to a server.')
@@ -51,6 +72,10 @@ export default class TheWbSocket {
     }
   }
 
+  /**
+   *
+   * @param {object} msg msg object that contain data
+   */
   cachMessages (msg) {
     let msgs = JSON.parse(localStorage.getItem('chatApp'))
 

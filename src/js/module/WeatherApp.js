@@ -118,10 +118,18 @@ export default class WeatherApp {
     this.searchAction()
   }
 
+  /**
+   *
+   * @returns {Element} Dom element that represent the app container.
+   */
   getWeatherAppp () {
     return this.#theApp
   }
 
+  /**
+   *
+   * @param {string} city name of the city.
+   */
   async checkWeather (city) {
     const apiKey = '767c1140678ccf7a12a0d3cd0e115e6f'
     const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?units=metric&q='
@@ -155,6 +163,9 @@ export default class WeatherApp {
     }
   }
 
+  /**
+   * add action ot search button and input
+   */
   searchAction () {
     this.#button.addEventListener('click', (e) => {
       e.preventDefault()
