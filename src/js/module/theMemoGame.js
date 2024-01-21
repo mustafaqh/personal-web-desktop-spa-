@@ -1,282 +1,261 @@
 export default class Game2 {
-    #gameContainer
-    #gaimeHeader
-    #headertext
-    #setttingBtn
-    #settingImg
-    #cardsContainer
-    #gameStatus
-    #gameLevelText
-    #try
-    #gameInfo
-    #restartBtn
-    #restartImg
-    #items
-    #itemsId
-    #src
-    #settingDiv
-    #level1
-    #level2
-    #level3
-    #LevelDiv
-    #size
-    constructor() {
-        this.#gameContainer = document.createElement('div')
-        this.#gameContainer.className = 'gameContainer'
+  #gameContainer
+  #gaimeHeader
+  #headertext
+  #setttingBtn
+  #settingImg
+  #cardsContainer
+  #gameStatus
+  #gameLevelText
+  #try
+  #gameInfo
+  #restartBtn
+  #restartImg
+  #items
+  #itemsId
+  #src
+  #settingDiv
+  #level1
+  #level2
+  #level3
+  #LevelDiv
+  #size
+  constructor () {
+    this.#gameContainer = document.createElement('div')
+    this.#gameContainer.className = 'gameContainer'
 
-        this.#gaimeHeader = document.createElement('div')
-        this.#gaimeHeader.className = "header"
+    this.#gaimeHeader = document.createElement('div')
+    this.#gaimeHeader.className = 'header'
 
-        this.#gameContainer.appendChild(this.#gaimeHeader)
+    this.#gameContainer.appendChild(this.#gaimeHeader)
 
-        this.#headertext = document.createElement('h2')
-        this.#headertext.className = 'thHeadertext'
-        this.#headertext.innerText = 'Memory Game'
+    this.#headertext = document.createElement('h2')
+    this.#headertext.className = 'thHeadertext'
+    this.#headertext.innerText = 'Memory Game'
 
-        this.#setttingBtn = document.createElement('button')
-        this.#setttingBtn.className = 'settingBtn'
+    this.#setttingBtn = document.createElement('button')
+    this.#setttingBtn.className = 'settingBtn'
 
+    this.#LevelDiv = document.createElement('div')
+    this.#LevelDiv.className = 'level hidden'
+    this.#level1 = document.createElement('a')
+    this.#level1.className = 'aElement Small'
+    this.#level1.innerText = 'Small'
+    this.#level2 = document.createElement('a')
+    this.#level2.className = 'aElement Medum'
+    this.#level2.innerText = 'Medum'
+    this.#level3 = document.createElement('a')
+    this.#level3.className = 'aElement Large'
+    this.#level3.innerText = 'Large'
 
-        this.#LevelDiv = document.createElement('div')
-        this.#LevelDiv.className = 'level hidden'
-        this.#level1 = document.createElement('a')
-        this.#level1.className = 'aElement Small'
-        this.#level1.innerText = 'Small'
-        this.#level2 = document.createElement('a')
-        this.#level2.className = 'aElement Medum'
-        this.#level2.innerText = 'Medum'
-        this.#level3 = document.createElement('a')
-        this.#level3.className = 'aElement Large'
-        this.#level3.innerText = 'Large'
+    this.#LevelDiv.appendChild(this.#level1)
+    this.#LevelDiv.appendChild(this.#level2)
+    this.#LevelDiv.appendChild(this.#level3)
 
-        this.#LevelDiv.appendChild(this.#level1)
-        this.#LevelDiv.appendChild(this.#level2)
-        this.#LevelDiv.appendChild(this.#level3)
+    this.#settingDiv = document.createElement('div')
+    this.#settingDiv.className = 'settings'
+    this.#settingDiv.appendChild(this.#setttingBtn)
+    this.#gaimeHeader.appendChild(this.#headertext)
+    this.#gaimeHeader.appendChild(this.#settingDiv)
 
+    this.#settingImg = document.createElement('img')
+    this.#settingImg.src = '../src/img//MemoryGame/s.png'
+    this.#settingImg.className = 'settingImg'
+    this.#setttingBtn.appendChild(this.#settingImg)
 
+    this.#cardsContainer = document.createElement('div')
+    this.#cardsContainer.className = ('cardsContainer')
 
-        this.#settingDiv = document.createElement('div')
-        this.#settingDiv.className = 'settings'
-        this.#settingDiv.appendChild(this.#setttingBtn)
-        this.#gaimeHeader.appendChild(this.#headertext)
-        this.#gaimeHeader.appendChild(this.#settingDiv)
+    this.#gameContainer.appendChild(this.#cardsContainer)
 
-        this.#settingImg = document.createElement('img')
-        this.#settingImg.src = '../src/img//MemoryGame/s.png'
-        this.#settingImg.className = 'settingImg'
-        this.#setttingBtn.appendChild(this.#settingImg)
+    this.#gameStatus = document.createElement('div')
+    this.#gameStatus.className = 'gameStatus'
 
-        this.#cardsContainer = document.createElement('div')
-        this.#cardsContainer.className = ('cardsContainer')
+    this.#gameLevelText = document.createElement('p')
+    this.#gameLevelText.className = 'levelText'
+    this.#gameLevelText.innerText = 'Level : small'
 
-        this.#gameContainer.appendChild(this.#cardsContainer)
+    this.#gameStatus.appendChild(this.#gameLevelText)
 
-        this.#gameStatus = document.createElement('div')
-        this.#gameStatus.className = 'gameStatus'
+    this.#try = document.createElement('p')
+    this.#try.className = 'try'
+    this.#try.innerText = 'Attempt Counter : 0 '
+    this.#gameStatus.appendChild(this.#try)
 
+    this.#gameInfo = document.createElement('div')
+    this.#gameInfo.className = 'gameInfo'
 
-        this.#gameLevelText = document.createElement('p')
-        this.#gameLevelText.className = "levelText"
+    this.#restartBtn = document.createElement('button')
+    this.#restartBtn.className = 'reset'
+
+    this.#restartImg = document.createElement('img')
+    this.#restartImg.className = 'restartImg'
+    this.#restartImg.src = '../src/img//MemoryGame/restart.png'
+
+    this.#restartBtn.appendChild(this.#restartImg)
+
+    this.#gameInfo.appendChild(this.#gameStatus)
+    this.#gameInfo.appendChild(this.#restartBtn)
+    this.#settingDiv.appendChild(this.#LevelDiv)
+    this.#gameContainer.appendChild(this.#gameInfo)
+
+    this.#items = ['chips.png', 'dice.png', 'gamble.png', 'gamble2.png', 'hat.png']
+    this.#itemsId = [0, 1, 2, 3, 4]
+    this.#src = '../src/img/MemoryGame/'
+    this.#size = 2
+    this.createGameGrid(this.#size)
+    this.restartButton()
+    this.theMemoryGame()
+    this.playWithKeyBoard()
+  }
+
+  getGame () {
+    return this.#gameContainer
+  }
+
+  createGameGrid (y) {
+    let t = 0
+    let x = 0
+    while (x < y) {
+      const shuffledId = this.#itemsId.sort(() => Math.random() - 0.5)
+
+      console.log(shuffledId)
+      for (let i = 0; i < this.#items.length; i++) {
+        const itemBox = document.createElement('div')
+        itemBox.className = 'card'
+        const theImg = document.createElement('img')
+        theImg.className = 'gameimgs'
+        theImg.src = `${this.#src}${this.#items[shuffledId[i]]}`
+        console.log(shuffledId[i])
+        theImg.id = `image${this.#itemsId[i]}`
+        itemBox.appendChild(theImg)
+        itemBox.id = shuffledId[i]
+
+        this.#cardsContainer.appendChild(itemBox)
+
+        itemBox.addEventListener('click', () => {
+          itemBox.classList.add('boxOpen')
+
+          setTimeout(() => {
+            const openBox = document.querySelectorAll('.boxOpen')
+            if (openBox.length > 1) {
+              if (openBox[0].id === openBox[1].id) {
+                console.log(openBox[0].id)
+                console.log(openBox[1].id)
+                openBox[0].classList.add('matchBox')
+                openBox[1].classList.add('matchBox')
+
+                openBox[1].classList.remove('boxOpen')
+                openBox[0].classList.remove('boxOpen')
+
+                const matchBox = document.querySelectorAll('.matchBox')
+                if (matchBox.length === (this.#items.length) * y) {
+                  alert('you win')
+                  console.log('you win')
+                }
+                t = t + 1
+              } else {
+                openBox[0].classList.remove('boxOpen')
+                openBox[1].classList.remove('boxOpen')
+                t = t + 1
+              }
+              this.#try.innerText = `Attempt Counter : ${t}`
+            }
+          }, 500)
+        })
+      }
+
+      x = x + 1
+    }
+  }
+
+  playWithKeyBoard () {
+    document.addEventListener('keydown', (e) => {
+      const cards = document.querySelectorAll('.card')
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].setAttribute('tabindex', `${i}`)
+      }
+      const currentFocusedIndex = document.activeElement.tabIndex
+      console.log('FFF', currentFocusedIndex)
+      console.log('ZZZZZZ', cards.length)
+      let nextIndex = -1
+
+      if (e.key === 'ArrowRight') {
+        nextIndex = currentFocusedIndex + 1
+        if (nextIndex >= cards.length) {
+          nextIndex = 0
+        }
+      } else if (e.key === 'ArrowLeft') {
+        nextIndex = currentFocusedIndex - 1
+        if (nextIndex < 0) {
+          nextIndex = cards.length - 1
+        }
+      } else if (e.key === 'ArrowDown') {
+        nextIndex = currentFocusedIndex + 5
+        if (nextIndex >= cards.length) {
+          nextIndex = 0
+        }
+      } else if (e.key === 'ArrowUp') {
+        nextIndex = currentFocusedIndex - 5
+        if (nextIndex < 0) {
+          nextIndex = cards.length - 1
+        }
+      }
+
+      if (nextIndex !== -1) {
+        const nextCard = Array.from(cards).find(card => card.tabIndex === nextIndex)
+        if (nextCard) {
+          nextCard.focus()
+        }
+      }
+
+      if (e.key === 'Enter') {
+        const focusedCard = document.activeElement
+        if (focusedCard && focusedCard.classList.contains('card')) {
+          focusedCard.click()
+        }
+      }
+    })
+  }
+
+  theMemoryGame () {
+    this.#setttingBtn.addEventListener('click', () => {
+      this.#LevelDiv.classList.toggle('hidden')
+
+      this.#level1.addEventListener('click', () => {
+        this.#cardsContainer.innerHTML = ''
         this.#gameLevelText.innerText = 'Level : small'
-
-        this.#gameStatus.appendChild(this.#gameLevelText)
-
-        this.#try = document.createElement('p')
-        this.#try.className = 'try'
-        this.#try.innerText = 'Attempt Counter : 0 '
-        this.#gameStatus.appendChild(this.#try)
-
-        this.#gameInfo = document.createElement('div')
-        this.#gameInfo.className = 'gameInfo'
-
-        this.#restartBtn = document.createElement('button')
-        this.#restartBtn.className = 'reset'
-
-        this.#restartImg = document.createElement('img')
-        this.#restartImg.className = 'restartImg'
-        this.#restartImg.src = '../src/img//MemoryGame/restart.png'
-
-        this.#restartBtn.appendChild(this.#restartImg)
-
-        this.#gameInfo.appendChild(this.#gameStatus)
-        this.#gameInfo.appendChild(this.#restartBtn)
-        this.#settingDiv.appendChild(this.#LevelDiv)
-        this.#gameContainer.appendChild(this.#gameInfo)
-
-        this.#items = ['chips.png', 'dice.png', 'gamble.png', 'gamble2.png', 'hat.png']
-        this.#itemsId = [0, 1, 2, 3, 4]
-        this.#src = '../src/img/MemoryGame/'
+        this.#try.innerText = 'Attempt Counter : 0'
         this.#size = 2
         this.createGameGrid(this.#size)
-        this.restartButton()
-        this.theMemoryGame()
-        this.playWithKeyBoard()
-    }
+        this.#LevelDiv.classList.add('hidden')
+      })
 
+      this.#level2.addEventListener('click', () => {
+        this.#cardsContainer.innerHTML = ''
+        this.#gameLevelText.innerText = 'Level : Medium'
+        this.#try.innerText = 'Attempt Counter : 0'
+        this.#size = 3
+        this.createGameGrid(this.#size)
+        this.#LevelDiv.classList.add('hidden')
+      })
 
-    getGame() {
-        return this.#gameContainer
-    }
+      this.#level3.addEventListener('click', () => {
+        this.#cardsContainer.innerHTML = ''
+        this.#gameLevelText.innerText = 'Level : Larg'
+        this.#try.innerText = 'Attempt Counter : 0'
+        this.#size = 4
+        this.createGameGrid(this.#size)
+        this.#LevelDiv.classList.add('hidden')
+      })
+    })
+  }
 
-
-    createGameGrid(y) {
-        var t = 0
-        var x = 0
-        while (x < y) {
-            var shuffledId = this.#itemsId.sort(() => Math.random() - 0.5)
-
-
-            console.log(shuffledId)
-            for (var i = 0; i < this.#items.length; i++) {
-                const itemBox = document.createElement('div')
-                itemBox.className = 'card'
-                const theImg = document.createElement('img')
-                theImg.className = 'gameimgs'
-                theImg.src = `${this.#src}${this.#items[shuffledId[i]]}`
-                console.log(shuffledId[i])
-                theImg.id = `image${this.#itemsId[i]}`
-                itemBox.appendChild(theImg)
-                itemBox.id = shuffledId[i]
-               
-                this.#cardsContainer.appendChild(itemBox)
-
-
-                itemBox.addEventListener('click', () => {
-                    itemBox.classList.add('boxOpen')
-
-                    setTimeout(() => {
-                        var openBox = document.querySelectorAll('.boxOpen')
-                        if (openBox.length > 1) {
-                            if (openBox[0].id == openBox[1].id) {
-                                console.log(openBox[0].id)
-                                console.log(openBox[1].id)
-                                openBox[0].classList.add('matchBox')
-                                openBox[1].classList.add('matchBox')
-
-                                openBox[1].classList.remove('boxOpen')
-                                openBox[0].classList.remove('boxOpen')
-
-                                var matchBox = document.querySelectorAll('.matchBox')
-                                if (matchBox.length == (this.#items.length) * y) {
-                                    alert('you win')
-                                    console.log('you win')
-                                }
-                                t = t + 1
-                            } else {
-                                openBox[0].classList.remove('boxOpen')
-                                openBox[1].classList.remove('boxOpen')
-                                t = t + 1
-                            }
-                            this.#try.innerText = `Attempt Counter : ${t}`
-                        }
-                    }, 500)
-                })
-
-            }
-
-
-            x = x + 1
-
-        }
-
-
-
-    }
-
-    playWithKeyBoard() {
-
-       
-        document.addEventListener('keydown', (e) => {
-             const cards = document.querySelectorAll('.card')
-            for(let i = 0; i < cards.length; i++) {
-                cards[i].setAttribute('tabindex', `${i}`)
-            }
-            const currentFocusedIndex = document.activeElement.tabIndex;
-            console.log('FFF', currentFocusedIndex)
-            console.log('ZZZZZZ', cards.length)
-            let nextIndex = -1;
-
-            if (e.key === 'ArrowRight' ) {
-                nextIndex = currentFocusedIndex + 1;
-                if (nextIndex >= cards.length) {
-                    nextIndex = 0; 
-                }
-            } else if (e.key === 'ArrowLeft') {
-                nextIndex = currentFocusedIndex - 1;
-                if (nextIndex < 0) {
-                    nextIndex = cards.length - 1; 
-                }
-            } else if ( e.key === 'ArrowDown') {
-                nextIndex = currentFocusedIndex + 5;
-                if (nextIndex >= cards.length) {
-                    nextIndex = 0; 
-                }
-            } else if ( e.key === 'ArrowUp') {
-                nextIndex = currentFocusedIndex - 5;
-                if (nextIndex < 0) {
-                    nextIndex = cards.length - 1; 
-                }
-            }
-
-
-            if (nextIndex !== -1) {
-                const nextCard = Array.from(cards).find(card => card.tabIndex === nextIndex);
-                if (nextCard) {
-                    nextCard.focus();
-                }
-            }
-
-            if (e.key === 'Enter') {
-                const focusedCard = document.activeElement;
-                if (focusedCard && focusedCard.classList.contains('card')) {
-                    focusedCard.click()
-                }
-            }
-        })
-
-    }
-
-    theMemoryGame() {
-
-        this.#setttingBtn.addEventListener('click', () => {
-            this.#LevelDiv.classList.toggle('hidden')
-
-            this.#level1.addEventListener('click', () => {
-                this.#cardsContainer.innerHTML = ''
-                this.#gameLevelText.innerText = 'Level : small'
-                this.#try.innerText = `Attempt Counter : 0`
-                this.#size = 2
-                this.createGameGrid(this.#size)
-                this.#LevelDiv.classList.add('hidden')
-            })
-
-            this.#level2.addEventListener('click', () => {
-                this.#cardsContainer.innerHTML = ''
-                this.#gameLevelText.innerText = 'Level : Medium'
-                this.#try.innerText = `Attempt Counter : 0`
-                this.#size = 3
-                this.createGameGrid(this.#size)
-                this.#LevelDiv.classList.add('hidden')
-            })
-
-            this.#level3.addEventListener('click', () => {
-                this.#cardsContainer.innerHTML = ''
-                this.#gameLevelText.innerText = 'Level : Larg'
-                this.#try.innerText = `Attempt Counter : 0`
-                this.#size = 4
-                this.createGameGrid(this.#size)
-                this.#LevelDiv.classList.add('hidden')
-            })
-
-
-        })
-    }
-    restartButton() {
-        this.#restartBtn.addEventListener('click', () => {
-            this.#cardsContainer.innerHTML = ''
-            this.createGameGrid(this.#size)
-            this.#try.innerText = `Attempt Counter : 0`
-        })
-    }
-
+  restartButton () {
+    this.#restartBtn.addEventListener('click', () => {
+      this.#cardsContainer.innerHTML = ''
+      this.createGameGrid(this.#size)
+      this.#try.innerText = 'Attempt Counter : 0'
+    })
+  }
 }

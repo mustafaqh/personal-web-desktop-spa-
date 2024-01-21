@@ -119,10 +119,9 @@
     content: '';
     position: absolute;
     inset: 0;
-    /* background-image: url('../img/q.png'); */
+    background: linear-gradient(135deg, #153677, #4e085f);
     background-position: center;
     background-size: cover;
-    background: linear-gradient(135deg, #153677, #4e085f);
     transition: 0.25s;
     transform: rotateY(0deg);
     backface-visibility: hidden;
