@@ -28,8 +28,8 @@ export default class WeatherApp {
     this.#theApp.className = 'theApp'
     this.#buttonImage = document.createElement('img')
     this.#buttonImage.className = 'seachingImg'
-    const BACK_IMG_URL = (new URL('../../img/weatherApp/search.png', import.meta.url)).href
-    this.#buttonImage.src = `${BACK_IMG_URL}`
+    const searchingIcon = (new URL('../../img/weatherApp/searchingIcon.png', import.meta.url)).href
+    this.#buttonImage.src = `${searchingIcon}`
 
     this.#button = document.createElement('button')
     this.#button.className = 'searchingButton'
@@ -52,7 +52,7 @@ export default class WeatherApp {
     this.#weather = document.createElement('div')
     this.#weather.className = 'weather hidden'
     this.#weatherIcon = document.createElement('img')
-    const Rain = (new URL('../../img/weatherApp/search.png', import.meta.url)).href
+    const Rain = (new URL('../../img/weatherApp/rain.png', import.meta.url)).href
     this.#weatherIcon.src = `${Rain}`
     this.#weatherIcon.className = 'weatnerIcon'
 
@@ -77,7 +77,8 @@ export default class WeatherApp {
     this.#humidityCol.className = 'col'
 
     this.#humidityImg = document.createElement('img')
-    this.#humidityImg.src = '../img/weatherApp/humidity.png'
+    const theHumidity = (new URL('../../img/weatherApp/humidity.png', import.meta.url)).href
+    this.#humidityImg.src = `${theHumidity}`
     this.#humidityImg.className = 'humidityImg'
     this.#humidity = document.createElement('p')
     this.#humidity.className = 'humidity'
@@ -95,7 +96,8 @@ export default class WeatherApp {
     this.#windCol = document.createElement('div')
 
     this.#windImg = document.createElement('img')
-    this.#windImg.src = '../img/weatherApp/wind.png'
+    const theWind = (new URL('../../img/weatherApp/wind.png', import.meta.url)).href
+    this.#windImg.src = `${theWind}`
     this.#windImg.className = 'windImg'
     this.#windCol.appendChild(this.#windImg)
     this.#windCol.className = 'col'
@@ -135,7 +137,13 @@ export default class WeatherApp {
   async checkWeather (city) {
     const apiKey = '767c1140678ccf7a12a0d3cd0e115e6f'
     const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?units=metric&q='
+    const theClear = (new URL('../../img/weatherApp/clear.png', import.meta.url)).href
+    const theCloud = (new URL('../../img/weatherApp/clouds.png', import.meta.url)).href
+    const theRain = (new URL('../../img/weatherApp/rain.png', import.meta.url)).href
+    const theDrizzle = (new URL('../../img/weatherApp/drizzle.png', import.meta.url)).href
+    const theMinst = (new URL('../../img/weatherApp/minst.png', import.meta.url)).href
     const response = await fetch(apiUrl + city + `&appid=${apiKey}`)
+    
     const data = await response.json()
     console.log('ssssssssssss', response.status)
 
@@ -152,15 +160,15 @@ export default class WeatherApp {
       this.#weatherStauts.innerHTML = data.weather[0].main
 
       if (data.weather[0].main === 'Clear') {
-        this.#weatherIcon.src = '../img/weatherApp/clear.png'
+        this.#weatherIcon.src = `${theClear}`
       } else if (data.weather[0].main === 'Clouds') {
-        this.#weatherIcon.src = '../img/weatherApp/clouds.png'
+        this.#weatherIcon.src = `${theCloud}`
       } else if (data.weather[0].main === 'Rain') {
-        this.#weatherIcon.src = '../img/weatherApp/rain.png'
+        this.#weatherIcon.src = `${theRain}`
       } else if (data.weather[0].main === 'Drizzle') {
-        this.#weatherIcon.src = '../img/weatherApp/drizzle.png'
+        this.#weatherIcon.src = `${theDrizzle}`
       } else if (data.weather[0].main === 'Minst') {
-        this.#weatherIcon.src = '../img/weatherApp/minst.png'
+        this.#weatherIcon.src = `${theMinst}`
       }
     }
   }

@@ -23,7 +23,9 @@ memoBtn.addEventListener('click', () => {
   const memo = new Game2()
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(memo.getGame())
-  taskBar.creatingOpenIcon(theWindow, 'memoryGame openGame', '../img/memoryGameIcon.png', 'memoryGameIcon')
+  const MemoIcon = (new URL('../../img/memoryGameIcon.png', import.meta.url)).href
+
+  taskBar.creatingOpenIcon(theWindow, 'memoryGame openGame', `${MemoIcon}`, 'memoryGameIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
     theWindow.returnWindow().remove()
@@ -46,7 +48,8 @@ toDoBtn.addEventListener('click', () => {
   const toDo = new ToDoList()
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(toDo.getApp())
-  taskBar.creatingOpenIcon(theWindow, 'toDoApp openToDo', '../img/toDo/todolist.png', 'ToDoAppIcon')
+  const toDoIcon = (new URL('../../img/toDo/todolist.png', import.meta.url)).href
+  taskBar.creatingOpenIcon(theWindow, 'toDoApp openToDo', `${toDoIcon}`, 'ToDoAppIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
     theWindow.returnWindow().remove()
@@ -73,7 +76,8 @@ chatBtn.addEventListener('click', () => {
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(ch.getChatLogIn())
   theWindow.appendWindowChild(ch.getChat())
-  taskBar.creatingOpenIcon(theWindow, 'chattApp openChat', '../img/chatApp.png', 'chattAppIcon')
+  const chattApp = (new URL('../../img/chatApp.png', import.meta.url)).href
+  taskBar.creatingOpenIcon(theWindow, 'chattApp openChat', `${chattApp}`, 'chattAppIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
     theWindow.returnWindow().remove()
@@ -98,8 +102,8 @@ weatherBtn.addEventListener('click', () => {
   const we = new WeatherApp()
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(we.getWeatherAppp())
-
-  taskBar.creatingOpenIcon(theWindow, 'weatherApp openweather', '../img/weatherApp.png', 'weatherAppIcon')
+  const watherIcon = (new URL('../../img/weatherApp.png', import.meta.url)).href
+  taskBar.creatingOpenIcon(theWindow, 'weatherApp openweather', `${watherIcon}`, 'weatherAppIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
     theWindow.returnWindow().remove()
