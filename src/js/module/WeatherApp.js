@@ -28,7 +28,8 @@ export default class WeatherApp {
     this.#theApp.className = 'theApp'
     this.#buttonImage = document.createElement('img')
     this.#buttonImage.className = 'seachingImg'
-    this.#buttonImage.src = '../img/weatherApp/search.png'
+    const BACK_IMG_URL = (new URL('../../img/weatherApp/search.png', import.meta.url)).href
+    this.#buttonImage.src = `${BACK_IMG_URL}`
 
     this.#button = document.createElement('button')
     this.#button.className = 'searchingButton'
@@ -51,7 +52,8 @@ export default class WeatherApp {
     this.#weather = document.createElement('div')
     this.#weather.className = 'weather hidden'
     this.#weatherIcon = document.createElement('img')
-    this.#weatherIcon.src = '../img/weatherApp/rain.png'
+    const Rain = (new URL('../../img/weatherApp/search.png', import.meta.url)).href
+    this.#weatherIcon.src = `${Rain}`
     this.#weatherIcon.className = 'weatnerIcon'
 
     this.#temp = document.createElement('h1')

@@ -19,7 +19,8 @@ export default class ToDoList {
     this.#appHeader = document.createElement('h2')
     this.#appHeader.innerText = 'To-Do List'
     this.#headerImg = document.createElement('img')
-    this.#headerImg.src = '../img/ToDO/todolist.png'
+    const BACK_IMG_URL = (new URL('../../img/ToDO/todolist.png', import.meta.url)).href
+    this.#headerImg.src = `${BACK_IMG_URL}`
     this.#appHeader.appendChild(this.#headerImg)
     this.#toDoApp.appendChild(this.#appHeader)
 
@@ -64,7 +65,7 @@ export default class ToDoList {
       this.addTask()
     })
 
-    this.#searchInput.addEventListener('keydown', (e) => {
+    this.#searchInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault()
 

@@ -84,7 +84,8 @@ export default class ChattApp {
 
     this.#editImg = document.createElement('img')
     this.#editImg.className = 'editImg'
-    this.#editImg.src = '../img/chat/edit.png'
+    const CHAT_PIC = (new URL('../../img/chat/edit.png', import.meta.url)).href
+    this.#editImg.src = `${CHAT_PIC}`
 
     this.#editBtn.appendChild(this.#editImg)
     this.#editDiv.appendChild(this.#editBtn)

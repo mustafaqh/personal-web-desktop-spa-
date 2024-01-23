@@ -62,7 +62,8 @@ export default class Game2 {
     this.#gaimeHeader.appendChild(this.#settingDiv)
 
     this.#settingImg = document.createElement('img')
-    this.#settingImg.src = '../img/MemoryGame/s.png'
+    const stteingIcon = (new URL('../../img/MemoryGame/s.png', import.meta.url)).href
+    this.#settingImg.src = `${stteingIcon}`
     this.#settingImg.className = 'settingImg'
     this.#setttingBtn.appendChild(this.#settingImg)
 
@@ -93,7 +94,8 @@ export default class Game2 {
 
     this.#restartImg = document.createElement('img')
     this.#restartImg.className = 'restartImg'
-    this.#restartImg.src = '../img/MemoryGame/restart.png'
+    const restartIcon = (new URL('../../img/MemoryGame/restart.png', import.meta.url)).href
+    this.#restartImg.src = `${restartIcon}`
 
     this.#restartBtn.appendChild(this.#restartImg)
 
@@ -104,7 +106,7 @@ export default class Game2 {
 
     this.#items = ['chips.png', 'dice.png', 'gamble.png', 'gamble2.png', 'hat.png']
     this.#itemsId = [0, 1, 2, 3, 4]
-    this.#src = '../img/MemoryGame/'
+    
     this.#size = 2
     this.createGameGrid(this.#size)
     this.restartButton()
@@ -132,11 +134,14 @@ export default class Game2 {
 
       console.log(shuffledId)
       for (let i = 0; i < this.#items.length; i++) {
+        const updatedPath = `../../img/MemoryGame/${this.#items[i]}`
+        console.log(updatedPath)
+        const imgPath = (new URL(updatedPath, import.meta.url)).href
         const itemBox = document.createElement('div')
         itemBox.className = 'card'
         const theImg = document.createElement('img')
         theImg.className = 'gameimgs'
-        theImg.src = `${this.#src}${this.#items[shuffledId[i]]}`
+        theImg.src = `${imgPath}`
         console.log(shuffledId[i])
         theImg.id = `image${this.#itemsId[i]}`
         itemBox.appendChild(theImg)
