@@ -134,14 +134,12 @@ export default class Game2 {
 
       console.log(shuffledId)
       for (let i = 0; i < this.#items.length; i++) {
-        const updatedPath = `../../img/MemoryGame/${this.#items[i]}`
-        console.log(updatedPath)
-        const imgPath = (new URL(updatedPath, import.meta.url)).href
+        const thePath  = (new URL(`../../img/MemoryGame/${this.#items[i]}`, import.meta.url)).href
         const itemBox = document.createElement('div')
         itemBox.className = 'card'
         const theImg = document.createElement('img')
         theImg.className = 'gameimgs'
-        theImg.src = `${imgPath}`
+        theImg.src = `${thePath}`
         console.log(shuffledId[i])
         theImg.id = `image${this.#itemsId[i]}`
         itemBox.appendChild(theImg)

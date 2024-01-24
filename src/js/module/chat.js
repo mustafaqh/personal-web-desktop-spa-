@@ -174,6 +174,7 @@ export default class ChattApp {
 
     this.#logInInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
+        e.preventDefault()
         this.loggingInAction()
       }
     })

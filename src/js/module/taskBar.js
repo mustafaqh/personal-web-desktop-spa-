@@ -61,7 +61,7 @@ export default class TaskBar {
 
     this.#weatherAppIcon = document.createElement('img')
     this.#weatherAppIcon.className = 'weatherAppIcon'
-    const weatherIcon = (new URL('../../img/weatherApp.png', import.meta.url)).href
+    const weatherIcon = (new URL('../../img/weatherAppIcon.png', import.meta.url)).href
     this.#weatherAppIcon.src = `${weatherIcon}`
     this.#weatherApp.appendChild(this.#weatherAppIcon)
 

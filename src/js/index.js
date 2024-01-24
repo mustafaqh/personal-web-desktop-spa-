@@ -23,9 +23,8 @@ memoBtn.addEventListener('click', () => {
   const memo = new Game2()
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(memo.getGame())
-  const MemoIcon = (new URL('../../img/memoryGameIcon.png', import.meta.url)).href
-
-  taskBar.creatingOpenIcon(theWindow, 'memoryGame openGame', `${MemoIcon}`, 'memoryGameIcon')
+  const memoIcon = (new URL('../img/memoryGameIcon.png', import.meta.url)).href
+  taskBar.creatingOpenIcon(theWindow, 'memoryGame openGame', `${memoIcon}`, 'memoryGameIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
     theWindow.returnWindow().remove()
@@ -48,7 +47,7 @@ toDoBtn.addEventListener('click', () => {
   const toDo = new ToDoList()
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(toDo.getApp())
-  const toDoIcon = (new URL('../../img/toDo/todolist.png', import.meta.url)).href
+  const toDoIcon = (new URL('../img/toDo/todolist.png', import.meta.url)).href
   taskBar.creatingOpenIcon(theWindow, 'toDoApp openToDo', `${toDoIcon}`, 'ToDoAppIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
@@ -76,7 +75,7 @@ chatBtn.addEventListener('click', () => {
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(ch.getChatLogIn())
   theWindow.appendWindowChild(ch.getChat())
-  const chattApp = (new URL('../../img/chatApp.png', import.meta.url)).href
+  const chattApp = (new URL('../img/chatApp.png', import.meta.url)).href
   taskBar.creatingOpenIcon(theWindow, 'chattApp openChat', `${chattApp}`, 'chattAppIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {
@@ -102,7 +101,7 @@ weatherBtn.addEventListener('click', () => {
   const we = new WeatherApp()
   theWindow.appendWindow(theBody)
   theWindow.appendWindowChild(we.getWeatherAppp())
-  const watherIcon = (new URL('../../img/weatherApp.png', import.meta.url)).href
+  const watherIcon = (new URL('../img/weatherAppIcon.png', import.meta.url)).href
   taskBar.creatingOpenIcon(theWindow, 'weatherApp openweather', `${watherIcon}`, 'weatherAppIcon')
 
   theWindow.returnCloseButton().addEventListener('click', () => {

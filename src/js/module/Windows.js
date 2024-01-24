@@ -29,12 +29,12 @@ export default class Windows {
     this.#closeBtn.className = 'close'
 
     this.#minimizeIcon = document.createElement('img')
-    const theMiniIcon = (new URL('../../img/weatherApp/mini.png', import.meta.url)).href
+    const theMiniIcon = (new URL('../../img/mini.png', import.meta.url)).href
     this.#minimizeIcon.src = `${theMiniIcon}`
     this.#minimizeIcon.className = 'minimizeIcon'
 
     this.#closeIcon = document.createElement('img')
-    const theCloseIcon = (new URL('../../img/weatherApp/close.png', import.meta.url)).href
+    const theCloseIcon = (new URL('../../img/close.png', import.meta.url)).href
     this.#closeIcon.src = `${theCloseIcon}`
     this.#closeIcon.className = 'closeIcon'
     this.#closeBtn.appendChild(this.#closeIcon)
