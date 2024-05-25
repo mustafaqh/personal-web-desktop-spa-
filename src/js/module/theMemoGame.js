@@ -133,8 +133,8 @@ export default class Game2 {
       const shuffledId = this.#itemsId.sort(() => Math.random() - 0.5)
 
       console.log(shuffledId)
-      for (let i = 0; i < this.#items.length; i++) {
-        const thePath  = (new URL(`../../img/MemoryGame/${this.#items[i]}`, import.meta.url)).href
+      for (let i = 0; i < shuffledId.length; i++) {
+        const thePath  = (new URL(`../../img/MemoryGame/${this.#items[shuffledId[i]]}`, import.meta.url)).href
         const itemBox = document.createElement('div')
         itemBox.className = 'card'
         const theImg = document.createElement('img')
