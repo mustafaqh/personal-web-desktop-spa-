@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style/main.css">
+    <link rel="stylesheet" type="text/css" href="./style/taskbar.css">
+    <link rel="stylesheet" type="text/css" href="./style/window.css">
+    <title>Personal Web Desktop (PWD)</title>
+</head>
+
+<body>
+    <div id="desktop">
+
+        <!-- Blur Toggle Button -->
+        <button id="blur-toggle">
+            <img id="blur-icon" src="./assets/icons/eye.svg" alt="Blur toggle">
+        </button>
+
+        <!-- Clock -->
+        <div id="clock">
+            <div id="clock-time"></div>
+            <div id="clock-date"></div>
+        </div>
+
+        <!-- Taskbar -->
+        <div id="taskbar">
+            <div id="taskbar-apps"></div>
+        </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>

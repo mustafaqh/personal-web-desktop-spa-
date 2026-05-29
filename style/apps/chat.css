@@ -1,0 +1,315 @@
+.window-content:has(.chat-app) {
+  overflow: hidden;
+  padding: 10px 12px;
+}
+
+.window-frame:has(.chat-app) {
+  width: 420px;
+  height: 480px;
+  max-height: calc(100vh - 100px);
+}
+
+.chat-app {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  position: relative;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.chat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chat-status[data-status='connected'] {
+  background: rgba(74, 222, 128, 0.2);
+  border-color: rgba(74, 222, 128, 0.45);
+}
+
+.chat-status[data-status='connecting'] {
+  background: rgba(250, 204, 21, 0.2);
+  border-color: rgba(250, 204, 21, 0.45);
+}
+
+.chat-status[data-status='disconnected'],
+.chat-status[data-status='error'] {
+  background: rgba(248, 113, 113, 0.2);
+  border-color: rgba(248, 113, 113, 0.45);
+}
+
+.chat-channel-select {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  padding: 5px 8px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.chat-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-settings[hidden] {
+  display: none;
+}
+
+.chat-username-display {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.chat-settings-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.chat-settings-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+}
+
+.chat-input {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  padding: 6px 10px;
+  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.chat-input:focus-visible,
+.chat-channel-select:focus-visible,
+.chat-textarea:focus-visible,
+.chat-btn:focus-visible {
+  outline: 2px solid #a5b4fc;
+  outline-offset: 2px;
+}
+
+.chat-reconnect-btn {
+  align-self: flex-start;
+}
+
+.chat-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.chat-messages {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chat-empty {
+  margin: auto;
+  padding: 12px;
+  font-size: 13px;
+  opacity: 0.65;
+  text-align: center;
+}
+
+.chat-message {
+  max-width: 88%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chat-message-own {
+  align-self: flex-end;
+  background: rgba(99, 102, 241, 0.35);
+  border-color: rgba(129, 140, 248, 0.45);
+}
+
+.chat-message-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  font-size: 11px;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.chat-message-user {
+  font-weight: 700;
+}
+
+.chat-message-time {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+}
+
+.chat-message-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.chat-composer {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  flex-shrink: 0;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-textarea {
+  flex: 1;
+  resize: none;
+  min-height: 44px;
+  max-height: 96px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.22);
+  color: inherit;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.35;
+}
+
+.chat-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #1e1b4b;
+  background: rgba(255, 255, 255, 0.9);
+  transition: background 0.15s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.chat-btn:hover:not(:disabled) {
+  background: #fff;
+  transform: scale(1.02);
+}
+
+.chat-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chat-btn-secondary {
+  background: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.chat-btn-icon {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.chat-settings-toggle[aria-expanded='true'] {
+  background: rgba(165, 180, 252, 0.35);
+  color: #fff;
+}
+
+.chat-send-btn {
+  min-width: 68px;
+  min-height: 44px;
+}
+
+.chat-username-gate {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 20, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 8px;
+  z-index: 2;
+}
+
+.chat-username-gate[hidden] {
+  display: none;
+}
+
+.chat-username-gate-panel {
+  width: min(100%, 280px);
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(30, 27, 75, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-username-gate-panel h3 {
+  margin: 0;
+  font-size: 16px;
+}

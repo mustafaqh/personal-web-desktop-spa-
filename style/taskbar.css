@@ -1,0 +1,168 @@
+/* Bottom-centered glass dock */
+#taskbar {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  height: 64px;
+  max-height: 64px;
+  min-height: 64px;
+  padding: 0 16px;
+  box-sizing: border-box;
+
+  background: rgba(15, 10, 40, 0.42);
+  backdrop-filter: blur(22px) saturate(130%);
+  -webkit-backdrop-filter: blur(22px) saturate(130%);
+
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+
+  overflow: hidden;
+}
+
+/* App icons — horizontal row only */
+#taskbar-apps {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
+.taskbar-app-btn {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+}
+
+.taskbar-app-btn:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.taskbar-app-btn:focus-visible {
+  outline: 2px solid #a5b4fc;
+  outline-offset: 2px;
+}
+
+.taskbar-app-btn img {
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+  display: block;
+}
+
+/* One open window — subtle active dot, no number */
+.taskbar-app-btn.is-active {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.taskbar-active-dot {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(129, 140, 248, 0.95);
+  box-shadow: 0 0 6px rgba(129, 140, 248, 0.6);
+  pointer-events: none;
+}
+
+/* All windows of this app minimized */
+.taskbar-app-btn.is-all-minimized {
+  opacity: 0.55;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.taskbar-app-btn.is-all-minimized.is-active {
+  opacity: 0.65;
+}
+
+/* Two or more open windows */
+.taskbar-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1e1b4b;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Dock icon right-click menu (appended to document.body) */
+.taskbar-context-menu {
+  position: fixed;
+  z-index: 2000;
+  min-width: 220px;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(18, 18, 28, 0.92);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+}
+
+.taskbar-context-menu[hidden] {
+  display: none;
+}
+
+.taskbar-context-menu-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s ease;
+}
+
+.taskbar-context-menu-item:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.taskbar-context-menu-item:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  outline: 2px solid #a5b4fc;
+  outline-offset: 2px;
+}
+
+.taskbar-context-menu-item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

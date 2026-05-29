@@ -1,0 +1,160 @@
+.window-frame {
+  width: 520px;
+  height: 320px;
+
+  background: rgba(18, 18, 28, 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow: 
+    0 20px 35px rgba(0,0,0,0.45),
+    0 0 25px rgba(255,255,255,0.05) inset;
+
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.window-frame.hidden {
+  display: none;
+}
+
+/* Memory window sizes per difficulty */
+.window-frame:has(.memory-app) {
+  width: 560px;
+  height: 600px;
+  max-height: calc(100vh - 100px);
+}
+
+.window-frame:has(.memory-app[data-level='easy']) {
+  height: 420px;
+}
+
+.window-frame:has(.memory-app[data-level='hard']) {
+  height: 640px;
+}
+
+/* Keep arrow keys on cards from scrolling the window body */
+.window-content:has(.memory-app) {
+  overflow: hidden;
+}
+
+/* ---------- TITLE BAR ---------- */
+.window-titlebar {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  flex-shrink: 0;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.window-titlebar:active {
+  cursor: grabbing;
+}
+
+
+/* ---------- BUTTONS ---------- */
+.window-buttons {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+  pointer-events: auto;
+}
+
+.win-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+
+  border: none;
+  background: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.95);
+  font-size: 11px;
+  font-weight: bold;
+
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  transition: background 0.15s, transform 0.15s;
+}
+
+.win-btn img {
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.win-btn:hover {
+  background: rgba(255,255,255,0.28);
+  transform: scale(1.06);
+}
+
+.win-btn:focus-visible {
+  outline: 2px solid #a5b4fc;
+  outline-offset: 2px;
+}
+
+
+/* ---------- TITLE ---------- */
+.window-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+  max-width: calc(100% - 120px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ---------- CONTENT ---------- */
+.window-content {
+  box-sizing: border-box;
+  padding: 14px;
+  flex: 1;
+  overflow: auto;
+  overflow-x: hidden;
+  color: white;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.app-placeholder h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.app-placeholder p {
+  margin: 0;
+  opacity: 0.85;
+}
