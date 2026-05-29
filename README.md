@@ -300,34 +300,7 @@ These screenshots show the main implemented parts of the Personal Web Desktop.
 
 ![Desktop without blur](./docs/images/spa_light_layout.png)
 
-## Submission notes
-
-Before handing in the assignment, complete these steps **manually**:
-
-1. **Presentation video (5–7 minutes)**  
-   Record yourself with **face cam** visible. Demonstrate:
-   - Personal Web Desktop (cascade windows, dock with app counts, drag, focus, minimize, close)
-   - Memory (levels, score, keyboard if shown)
-   - Chat (username, send message, show timestamps / channel if relevant)
-   - Weather (search city, forecast, refresh)
-
-2. **Screenshot**  
-   Add `docs/screenshot.png` and verify it displays in this README.
-
-3. **Git tag**  
-   Tag the submission commit, for example: `v1.0.0`
-
-4. **Push**  
-   Push commits and tags to your GitLab remote.
-
-5. **GitLab issue**  
-   Create the course issue and describe **F1–F5** and which optional features you implemented (channel selector, username change, reconnect, timestamps, weather persistence, etc.).
-
-6. **Built files (if required)**  
-   Run `npm run build` and include or deploy `dist/` per course instructions.
-
----
 
 ## License
 
-University assignment project — follow your course guidelines for reuse and attribution.
+University assignment project.
