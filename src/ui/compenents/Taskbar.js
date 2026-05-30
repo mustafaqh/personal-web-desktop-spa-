@@ -133,13 +133,21 @@ export default class Taskbar {
    * @param {import('../../apps/appRegistry.js').DesktopApp} app
    * @returns {boolean} Whether a minimized window was restored.
    */
-  #handleAppShiftActivate(app) {
+  #restoreMostRecentMinimized(app) {
     const minimized = this.#windowManager.getMostRecentMinimizedWindowByApp(app.appName);
     if (minimized) {
       this.#windowManager.showWindow(minimized.id);
       return true;
     }
     return false;
+  }
+
+  /**
+   * @param {import('../../apps/appRegistry.js').DesktopApp} app
+   * @returns {boolean} Whether a minimized window was restored.
+   */
+  #handleAppShiftActivate(app) {
+    return this.#restoreMostRecentMinimized(app);
   }
 
   /**
@@ -205,15 +213,11 @@ export default class Taskbar {
    * @param {import('../../apps/appRegistry.js').DesktopApp} app
    * @param {MouseEvent} e
    */
-  #handleAppClick(app, e) {
+  #handleAppClick(app, _e) {
     this.#closeContextMenu();
 
-    if (e.shiftKey) {
-      const minimized = this.#windowManager.getMostRecentMinimizedWindowByApp(app.appName);
-      if (minimized) {
-        this.#windowManager.showWindow(minimized.id);
-        return;
-      }
+    if (this.#restoreMostRecentMinimized(app)) {
+      return;
     }
 
     const content = createAppContent(app);
@@ -251,7 +255,7 @@ export default class Taskbar {
 
     if (allMinimized) {
       const label = count === 1 ? 'window' : 'windows';
-      return `Open ${title} — ${count} ${label} minimized (Shift+Enter to restore, right-click for options)`;
+      return `Open ${title} — ${count} ${label} minimized (click to restore, right-click for options)`;
     }
 
     if (count === 1) {

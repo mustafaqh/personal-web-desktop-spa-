@@ -62,16 +62,16 @@ Lint errors are not suppressed; the command must exit with code 0 for a clean ch
 
 ## Usage guide
 
-1. **Open apps** — Click **Memory**, **Chat**, or **Weather** on the bottom taskbar (dock). Each **click** opens a **new window** for that app.
+1. **Open apps** — Click **Memory**, **Chat**, or **Weather** on the bottom taskbar (dock). If that app has **minimized** windows, a click restores the most recent one; otherwise each click opens a **new window**.
 2. **Taskbar status** — Each app has one dock icon that is both launcher and status indicator:
    - **0 or 1** open window: no numeric badge (one open window shows a subtle active dot).
    - **2 or more** open windows: a small badge shows the count (e.g. `2`, `3`).
    - **Active** — at least one non-minimized window for that app.
    - **Minimized** — all open windows for that app are minimized (icon appears dimmed).
-   - **Shift+click** (or **Shift+Enter** / **Shift+Space** when the icon is focused) restores the most recent minimized window for that app (if any). A normal click or **Enter** / **Space** always opens a new window.
+   - **Click** (or **Enter** / **Space** when the icon is focused) restores the most recent minimized window when any exist; otherwise opens a new window. **Shift+click** / **Shift+Enter** / **Shift+Space** use the same restore-first rule.
 3. **Focus / z-order** — Click anywhere inside a window to bring it to the front. The focused window stays on top.
 4. **Drag windows** — Drag by the **title bar** only (not the content area).
-5. **Minimize** — Use the minimize button on the title bar. The window hides; use **Shift+click** on that app’s dock icon to restore the latest minimized window, or open another window with a normal click.
+5. **Minimize** — Use the minimize button on the title bar. The window hides; click that app’s dock icon to restore the latest minimized window. When no minimized windows remain, the next click opens a new window.
 6. **Close** — Use the close button. Closing one window does not affect others; the dock badge updates from the real open-window count.
 7. **Window placement** — Each new window is placed in a **cascade** from the top-left: offset down and to the right. When the next window would reach the bottom of the desktop (above the dock), the next one starts a **new column** near the top and cascades again. Placement respects window size and leaves space for the taskbar. **Dragging** a window does not change where future windows open.
 8. **Desktop extras** — The clock updates live. The eye button toggles the desktop glass blur effect.
@@ -85,8 +85,8 @@ The desktop shell and all three apps support keyboard use. Visible `:focus-visib
 ### Dock (taskbar)
 
 - **Tab** reaches each app icon (Memory, Chat, Weather).
-- **Enter** or **Space** on an icon opens a **new window** for that app (same as a normal click).
-- **Shift+Enter** or **Shift+Space** restores the **most recent minimized** window for that app, if any (same as Shift+click). If nothing is minimized, a new window opens as usual.
+- **Enter** or **Space** on an icon follows the same behavior as a normal click (restore most recent minimized window if any, otherwise open a new window).
+- **Shift+Enter** or **Shift+Space** uses the same restore-first rule (compatible with Shift+click).
 - **Context Menu** key or **Shift+F10** on an icon with open windows opens a **Close all … windows** menu (same as right-click). The menu item is focusable; **Enter** or **Space** activates it; **Escape** closes the menu and returns focus to the dock icon.
 
 ### Windows
@@ -183,7 +183,7 @@ The project is organized so the **desktop shell** stays separate from **applicat
 | `style/` | Global desktop, taskbar, window, and per-app CSS |
 | `assets/icons/` | Taskbar and window control icons |
 
-**How the pieces connect:** When the page loads, `main.js` creates a `WindowManager` bound to the `#desktop` element and a `Taskbar` that receives the manager and the `desktopApps` list from `appRegistry.js`. The taskbar renders **three dock icons** (Memory, Chat, Weather). A normal click calls `createAppContent(app)` and `WindowManager.createWindow()` to open a new window. After mount, the manager measures the window and assigns a **cascade position** (`#getNextWindowPosition`): each new window steps down and right; when the stack would go under the dock, placement continues in a new column from the top. Existing windows are not moved when you open or close others; user-dragged positions are kept. The taskbar listens for manager events and **recomputes** each app’s open-window count from `getWindowsByApp()`—badges show `2+`, a dot shows one visible window, and minimized/active styles reflect current state. **Shift+click** on an icon restores the most recent minimized window for that app via `getMostRecentMinimizedWindowByApp()`. Each app is responsible for its own UI and logic inside its window root; the window system does not know game or chat rules. Apps use small MVC-style splits (model / view / controller) where it helps readability. State that must survive reloads (chat username, weather city) uses `localStorage`; per-window state (game board, message list in that window) stays inside each instance. DOM is built with `createElement` and `textContent` rather than `innerHTML` for user-facing strings. CSS is split between shared window chrome and per-app styles imported from each app’s `index.js`.
+**How the pieces connect:** When the page loads, `main.js` creates a `WindowManager` bound to the `#desktop` element and a `Taskbar` that receives the manager and the `desktopApps` list from `appRegistry.js`. The taskbar renders **three dock icons** (Memory, Chat, Weather). A dock click first calls `getMostRecentMinimizedWindowByApp()` and restores that window when one exists; otherwise it calls `createAppContent(app)` and `WindowManager.createWindow()`. After mount, the manager measures the window and assigns a **cascade position** (`#getNextWindowPosition`): each new window steps down and right; when the stack would go under the dock, placement continues in a new column from the top. Existing windows are not moved when you open or close others; user-dragged positions are kept. The taskbar listens for manager events and **recomputes** each app’s open-window count from `getWindowsByApp()`—badges show `2+`, a dot shows one visible window, and minimized/active styles reflect current state. Each app is responsible for its own UI and logic inside its window root; the window system does not know game or chat rules. Apps use small MVC-style splits (model / view / controller) where it helps readability. State that must survive reloads (chat username, weather city) uses `localStorage`; per-window state (game board, message list in that window) stays inside each instance. DOM is built with `createElement` and `textContent` rather than `innerHTML` for user-facing strings. CSS is split between shared window chrome and per-app styles imported from each app’s `index.js`.
 
 ### Module diagram
 
@@ -211,7 +211,7 @@ Use this list before submission:
 - [ ] Clicking an app icon opens a new window
 - [ ] Dock shows no badge for 0–1 windows; badge `2`, `3`, … for multiple windows of the same app
 - [ ] Closing windows updates the badge correctly (never stuck)
-- [ ] All minimized for an app → dimmed dock icon; **Shift+click** or **Shift+Enter** restores latest minimized window
+- [ ] All minimized for an app → dimmed dock icon; click or Enter/Space restores latest minimized window; next click opens new window when none minimized
 - [ ] Dock icons: Tab, Enter/Space open app; Context Menu or Shift+F10 opens Close all (when windows open); Escape closes menu
 - [ ] Window close/minimize: Tab and Enter/Space work
 - [ ] No separate per-window icons on the dock (only Memory, Chat, Weather)
