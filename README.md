@@ -303,4 +303,9 @@ These screenshots show the main implemented parts of the Personal Web Desktop.
 
 ## License
 
-University assignment project.
+
+This project is shared for learning and portfolio purposes only.
+
+You may read the code to understand the implementation and learn from it, but you may not copy, submit, or present this project, or parts of it, as your own work for a course, assignment, or exam.
+
+If you use ideas from this project, please write your own code and follow your school’s academic honesty rules.
